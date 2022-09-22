@@ -1,0 +1,18 @@
+<persistence>
+    <persistence-unit name="my_persistence_unit">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <properties>
+            <!--derby -->
+            <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:derby:MyDataBase;create=true" />
+
+            <!--MYSQL-->
+<!--            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />-->
+<!--            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/exampleDB" />-->
+            <property name="javax.persistence.jdbc.user" value="root" />
+            <property name="javax.persistence.jdbc.password" value="password" />
+        </properties>
+        <!--  <class>com.tp.model.Jugador</class>  <mapping-file>\META-INF\mapping.xml</class>
+        <class>com.tp.model.Equipo</class> -->
+    </persistence-unit>
+</persistence>
