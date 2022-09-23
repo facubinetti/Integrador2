@@ -8,25 +8,11 @@ import java.util.List;
 @Entity
 public class Estudiante {
 
-    public Estudiante(int nrolibreta, int dni, String nombre, String apellido, int edad,
-                      char genero, String ciudad, List<Matriculacion> crusos) {
-        this.nrolibreta = nrolibreta;
-        this.dni = dni;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.edad = edad;
-        this.genero = genero;
-        this.ciudad = ciudad;
-        this.cursos = cursos;
-    }
-
-    public Estudiante() {
-    }
-
     @Id
     int id_estudiante;
 
     @Column(name = "dni")
+    @GeneratedValue(strategy=GenerationType.AUTO)
     int dni;
 
    @Column
@@ -51,6 +37,93 @@ public class Estudiante {
     @OneToMany (mappedBy = "estudiante",fetch = FetchType.LAZY)
     List<Matriculacion> cursos;
 
+    public Estudiante(int nrolibreta, int dni, String nombre, String apellido, int edad,
+            char genero, String ciudad, List<Matriculacion> crusos) {
+		this.nrolibreta = nrolibreta;
+		this.dni = dni;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.edad = edad;
+		this.genero = genero;
+		this.ciudad = ciudad;
+		this.cursos = cursos;
+}
 
+	public Estudiante() {
+	}
+
+	public int getId_estudiante() {
+		return id_estudiante;
+	}
+
+	public void setId_estudiante(int id_estudiante) {
+		this.id_estudiante = id_estudiante;
+	}
+
+	public int getDni() {
+		return dni;
+	}
+
+	public void setDni(int dni) {
+		this.dni = dni;
+	}
+
+	public int getNrolibreta() {
+		return nrolibreta;
+	}
+
+	public void setNrolibreta(int nrolibreta) {
+		this.nrolibreta = nrolibreta;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+	public int getEdad() {
+		return edad;
+	}
+
+	public void setEdad(int edad) {
+		this.edad = edad;
+	}
+
+	public char getGenero() {
+		return genero;
+	}
+
+	public void setGenero(char genero) {
+		this.genero = genero;
+	}
+
+	public String getCiudad() {
+		return ciudad;
+	}
+
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
+	}
+
+	public List<Matriculacion> getCursos() {
+		return cursos;
+	}
+
+	public void setCursos(List<Matriculacion> cursos) {
+		this.cursos = cursos;
+	}
+	
+	
 
 }
