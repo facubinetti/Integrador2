@@ -9,10 +9,11 @@ import java.util.List;
 public class Estudiante {
 
     @Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
     int id_estudiante;
 
     @Column(name = "dni")
-    @GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO)
     int dni;
 
    @Column
@@ -37,27 +38,21 @@ public class Estudiante {
     @OneToMany (mappedBy = "estudiante",fetch = FetchType.LAZY)
     List<Matriculacion> matriculaciones;
 
-    public Estudiante(int nrolibreta, int dni, String nombre, String apellido, int edad,
-            char genero, String ciudad, List<Matriculacion> matriculaciones) {
-		this.nrolibreta = nrolibreta;
-		this.dni = dni;
+    public Estudiante( String nombre, String apellido, int edad,
+            char genero, String ciudad) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.edad = edad;
 		this.genero = genero;
 		this.ciudad = ciudad;
-		this.matriculaciones = matriculaciones;
-}
+		this.matriculaciones = new ArrayList<Matriculacion>() ;
+	}
 
 	public Estudiante() {
 	}
 
 	public int getId_estudiante() {
 		return id_estudiante;
-	}
-
-	public void setId_estudiante(int id_estudiante) {
-		this.id_estudiante = id_estudiante;
 	}
 
 	public int getDni() {
@@ -70,10 +65,6 @@ public class Estudiante {
 
 	public int getNrolibreta() {
 		return nrolibreta;
-	}
-
-	public void setNrolibreta(int nrolibreta) {
-		this.nrolibreta = nrolibreta;
 	}
 
 	public String getNombre() {
@@ -120,8 +111,8 @@ public class Estudiante {
 		return matriculaciones;
 	}
 
-	public void setMatriculaciones(List<Matriculacion> matriculaciones) {
-		this.matriculaciones = matriculaciones;
+	public void agregarMatriculacion(Matriculacion mat){
+		matriculaciones.add(mat);
 	}
 	
 	

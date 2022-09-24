@@ -1,24 +1,25 @@
 package Model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class Carrera {
     @Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
     int id_carrera;
 
     @Column(nullable=false)
-    String Nombre;
+    String nombre;
 
     @OneToMany(mappedBy = "carrera",fetch = FetchType.LAZY)
     List<Matriculacion> matriculaciones;
     
     //Constructores
-	public Carrera(int id_carrera, String nombre) {
-		super();
-		this.id_carrera = id_carrera;
-		Nombre = nombre;
+	public Carrera( String nombre) {
+		this.nombre = nombre;
+		this.matriculaciones = new ArrayList<Matriculacion>();
 	}
 
 	public Carrera() {
@@ -26,21 +27,19 @@ public class Carrera {
 
 	//getters y setters
 	public String getNombre() {
-		return Nombre;
+		return nombre;
 	}
 
 	public void setNombre(String nombre) {
-		Nombre = nombre;
+		nombre = nombre;
 	}
 
 	public int getId_carrera() {
 		return id_carrera;
 	}
 
-	public void setId_carrera(int id_carrera) {
-		this.id_carrera = id_carrera;
+	public void agregarMatriculacion(Matriculacion mat){
+		matriculaciones.add(mat);
 	}
-
-    
 
 }

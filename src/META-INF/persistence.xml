@@ -1,7 +1,8 @@
 <persistence>
-    <persistence-unit name="my_persistence_unit">
+    <persistence-unit name="Example">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <properties>
+
             <!--derby -->
             <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
             <property name="javax.persistence.jdbc.url" value="jdbc:derby:MyDataBase;create=true" />
@@ -9,8 +10,16 @@
             <!--MYSQL-->
 <!--            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />-->
 <!--            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/exampleDB" />-->
-            <property name="javax.persistence.jdbc.user" value="root" />
-            <property name="javax.persistence.jdbc.password" value="password" />
+<!--            <property name="javax.persistence.jdbc.user" value="root" />-->
+<!--            <property name="javax.persistence.jdbc.password" value="password" />-->
+
+            <!-- Propiedad para la generacion automatica del esquema de base de datos -->
+            <property name="hibernate.hbm2ddl.auto" value="update" />
+            <property name="hibernate.dialect" value="org.hibernate.dialect.DerbyDialect"/>
+            <!--             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/> -->
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <!-- property name="hibernate.use_sql_comments" value="true"/-->
         </properties>
         <!--  <class>com.tp.model.Jugador</class>  <mapping-file>\META-INF\mapping.xml</class>
         <class>com.tp.model.Equipo</class> -->

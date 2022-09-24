@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Integrador2" target="12" />
+      <module name="Integrador2" target="11" />
       <module name="untitled" target="12" />
     </bytecodeTargetLevel>
   </component>

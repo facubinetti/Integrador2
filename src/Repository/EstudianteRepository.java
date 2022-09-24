@@ -2,7 +2,6 @@ package Repository;
 
 import java.util.List;
 
-import Model.Carrera;
 import Model.Estudiante;
 
 public interface EstudianteRepository {
