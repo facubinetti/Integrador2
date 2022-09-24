@@ -11,5 +11,5 @@ public interface CarreraRepository {
 	public boolean deleteCarrera(Carrera c);
 	public boolean matricularEstudiante(Estudiante e, Carrera c); 
 	public List<Carrera> getCarrerasConEstudiantes();
-	public List<Estudiante> getEstudiantesPorCiudad(String ciudad);
+	public List<Estudiante> getEstudiantesPorCiudad(String nombreCarrera, String ciudad);
 }

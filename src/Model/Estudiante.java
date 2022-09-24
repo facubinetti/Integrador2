@@ -114,6 +114,13 @@ public class Estudiante {
 	public void agregarMatriculacion(Matriculacion mat){
 		matriculaciones.add(mat);
 	}
+
+	@Override
+	public String toString() {
+		return "Estudiante [id_estudiante=" + id_estudiante + ", dni=" + dni + ", nrolibreta=" + nrolibreta
+				+ ", nombre=" + nombre + ", apellido=" + apellido + ", edad=" + edad + ", genero=" + genero
+				+ ", ciudad=" + ciudad + "]";
+	}
 	
 	
 

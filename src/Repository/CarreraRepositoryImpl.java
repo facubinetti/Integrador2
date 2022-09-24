@@ -3,12 +3,17 @@ package Repository;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 import Model.Carrera;
 import Model.Estudiante;
 
 public class CarreraRepositoryImpl implements CarreraRepository{
 	private EntityManager em;
+
+	public CarreraRepositoryImpl(EntityManager em) {
+		this.em=em;
+	}
 
 	@Override
 	public boolean saveCarrera(Carrera c) {
@@ -46,9 +51,14 @@ public class CarreraRepositoryImpl implements CarreraRepository{
 	}
 
 	@Override
-	public List<Estudiante> getEstudiantesPorCiudad(String ciudad) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Estudiante> getEstudiantesPorCiudad(String nombreCarrera,String ciudad) {
+		String get= "SELECT e FROM Estudiante e "
+				+ "INNER JOIN Matriculacion m ON e.idEstudiante = m.idEstudiante INNER JOIN Carrera c ON c.idCarrera  = m.idCarrera WHERE c.NOMBRE = :carrera "
+				+ "AND e.ciudad  = :ciudad";
+		TypedQuery<Estudiante> typedQuery = this.em.createQuery(get,Estudiante.class);
+		typedQuery.setParameter("carrera", nombreCarrera);
+		typedQuery.setParameter("ciudad", ciudad);
+		return typedQuery.getResultList();	
 	}
 
 }
