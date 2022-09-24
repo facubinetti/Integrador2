@@ -23,6 +23,16 @@ public class Matriculacion {
     @Column(name="antiguedad_en_carrera")
     private int antiguedad;
 
+	public Matriculacion() {
+	}
+
+	public Matriculacion(Estudiante estudiante, Carrera carrera, boolean graduado, int antiguedad) {
+		this.estudiante = estudiante;
+		this.carrera = carrera;
+		this.graduado = graduado;
+		this.antiguedad = antiguedad;
+	}
+
 	public Estudiante getEstudiante() {
 		return estudiante;
 	}
