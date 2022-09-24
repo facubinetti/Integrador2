@@ -61,7 +61,7 @@ public class Matriculacion {
 
 	@Override
 	public String toString() {
-		return "Matriculacion [idcurso=" + idcurso + ", estudiante=" + estudiante + ", carrera=" + carrera
+		return "Matriculacion [idcurso=" + idMatricula + ", estudiante=" + estudiante + ", carrera=" + carrera
 				+ ", graduado=" + graduado + ", antiguedad=" + antiguedad + "]";
 	}
 

@@ -35,10 +35,10 @@ public class Estudiante {
     String ciudad;
 
     @OneToMany (mappedBy = "estudiante",fetch = FetchType.LAZY)
-    List<Matriculacion> cursos;
+    List<Matriculacion> matriculaciones;
 
     public Estudiante(int nrolibreta, int dni, String nombre, String apellido, int edad,
-            char genero, String ciudad, List<Matriculacion> crusos) {
+            char genero, String ciudad, List<Matriculacion> matriculaciones) {
 		this.nrolibreta = nrolibreta;
 		this.dni = dni;
 		this.nombre = nombre;
@@ -46,7 +46,7 @@ public class Estudiante {
 		this.edad = edad;
 		this.genero = genero;
 		this.ciudad = ciudad;
-		this.cursos = cursos;
+		this.matriculaciones = matriculaciones;
 }
 
 	public Estudiante() {
@@ -116,12 +116,12 @@ public class Estudiante {
 		this.ciudad = ciudad;
 	}
 
-	public List<Matriculacion> getCursos() {
-		return cursos;
+	public List<Matriculacion> getMatriculaciones() {
+		return matriculaciones;
 	}
 
-	public void setCursos(List<Matriculacion> cursos) {
-		this.cursos = cursos;
+	public void setMatriculaciones(List<Matriculacion> matriculaciones) {
+		this.matriculaciones = matriculaciones;
 	}
 	
 	
