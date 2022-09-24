@@ -3,6 +3,7 @@ package Repository;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import Model.Carrera;
@@ -53,9 +54,9 @@ public class CarreraRepositoryImpl implements CarreraRepository{
 	@Override
 	public List<Estudiante> getEstudiantesPorCiudad(String nombreCarrera,String ciudad) {
 		String get= "SELECT e FROM Estudiante e "
-				+ "INNER JOIN Matriculacion m ON e.idEstudiante = m.idEstudiante INNER JOIN Carrera c ON c.idCarrera  = m.idCarrera WHERE c.NOMBRE = :carrera "
+				+ "INNER JOIN Matriculacion m ON e.id_estudiante = m.estudiante INNER JOIN Carrera c ON c.id_carrera  = m.carrera WHERE c.nombre = :carrera "
 				+ "AND e.ciudad  = :ciudad";
-		TypedQuery<Estudiante> typedQuery = this.em.createQuery(get,Estudiante.class);
+		Query typedQuery = this.em.createQuery(get);
 		typedQuery.setParameter("carrera", nombreCarrera);
 		typedQuery.setParameter("ciudad", ciudad);
 		return typedQuery.getResultList();	
