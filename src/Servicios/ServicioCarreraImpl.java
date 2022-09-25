@@ -2,12 +2,20 @@ package Servicios;
 
 import java.util.List;
 
+
+import Factory.FactoryEntityManager;
 import Model.Carrera;
 import Model.Estudiante;
 import Repository.CarreraRepositoryImpl;
 
 public class ServicioCarreraImpl implements ServicioCarrera{
 	private CarreraRepositoryImpl cr;
+	private FactoryEntityManager fem;
+	
+	public ServicioCarreraImpl(FactoryEntityManager fem) {
+		this.fem = fem;
+		this.cr = new CarreraRepositoryImpl(fem.getEntityManger());
+	};
 	
 	
 

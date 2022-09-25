@@ -2,11 +2,19 @@ package Servicios;
 
 import java.util.List;
 
+
+import Factory.FactoryEntityManager;
 import Model.Estudiante;
 import Repository.EstudianteRepositoryImpl;
 
 public class ServicioEstudianteImpl implements ServicioEstudiante{
 	private EstudianteRepositoryImpl er;
+	private FactoryEntityManager fem;
+	
+	public ServicioEstudianteImpl(FactoryEntityManager fem) {
+		this.fem = fem;
+		this.er = new EstudianteRepositoryImpl(this.fem.getEntityManger());
+	};
 	
 	@Override
 	public boolean insertarEstudiante(Estudiante e) {
