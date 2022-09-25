@@ -42,4 +42,10 @@ public class Carrera {
 		matriculaciones.add(mat);
 	}
 
+	@Override
+	public String toString() {
+		return "Carrera [id_carrera=" + id_carrera + ", nombre=" + nombre + ", matriculaciones=" + matriculaciones.size()
+				+ "]";
+	}
+
 }

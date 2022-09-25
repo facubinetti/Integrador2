@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import Model.Carrera;
 import Model.Estudiante;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -29,14 +30,27 @@ public class EstudianteRepositoryImpl implements EstudianteRepository{
 	}
 	
 	@Override
-	public Estudiante getEstudiantePorNroLibreta(int lu) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean deleteEstudiante(Estudiante e) {
+		if (em.contains(e)) {
+			em.remove(e);
+			return true;
+		} else {
+			em.merge(e);
+			return false;
+		}
+	}
+	
+	@Override
+	public Estudiante getEstudiantePorNroLibreta(int nrolibreta) {
+		String get ="SELECT e FROM Estudiante e WHERE e.nrolibreta=:nrolibreta";
+		TypedQuery<Estudiante> typedQuery = this.em.createQuery(get,Estudiante.class);
+		typedQuery.setParameter("nrolibreta", nrolibreta);
+		return typedQuery.getSingleResult();
 	}
 
 	@Override
 	public List<Estudiante> getEstudiantesPorGenero(char genero) {
-		String get ="\"SELECT e FROM Estudiante e WHERE e.genero=:genero\"";
+		String get ="SELECT e FROM Estudiante e WHERE e.genero=:genero";
 		TypedQuery<Estudiante> typedQuery = this.em.createQuery(get,Estudiante.class);
 		typedQuery.setParameter("genero", genero);
 		return typedQuery.getResultList();
@@ -44,8 +58,16 @@ public class EstudianteRepositoryImpl implements EstudianteRepository{
 
 	@Override
 	public List<Estudiante> getEstudiantesOrdenadoPor() {
-		// TODO Auto-generated method stub
-		return null;
+		String get ="SELECT e FROM Estudiante e ORDER BY e.nombre DESC";
+		TypedQuery<Estudiante> typedQuery = this.em.createQuery(get,Estudiante.class);
+		return typedQuery.getResultList();
+	}
+
+	@Override
+	public List<Estudiante> getAllEstudiantes() {
+		String get="SELECT e FROM Estudiante e";
+		TypedQuery<Estudiante> typedQuery = this.em.createQuery(get, Estudiante.class);
+		return typedQuery.getResultList();
 	}
 
 }

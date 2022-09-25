@@ -13,11 +13,11 @@ public class Estudiante {
     int id_estudiante;
 
     @Column(name = "dni")
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue
     int dni;
 
    @Column
-   @GeneratedValue(strategy = GenerationType.AUTO)
+   @GeneratedValue
     int nrolibreta;
 
     @Column(name = "nombre",nullable = false)
@@ -38,7 +38,7 @@ public class Estudiante {
     @OneToMany (mappedBy = "estudiante",fetch = FetchType.LAZY)
     List<Matriculacion> matriculaciones;
 
-    public Estudiante( String nombre, String apellido, int edad,
+    public Estudiante( int dni, int lu,String nombre, String apellido, int edad,
             char genero, String ciudad) {
 		this.nombre = nombre;
 		this.apellido = apellido;
