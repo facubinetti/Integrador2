@@ -49,6 +49,7 @@ public class CarreraRepositoryImpl implements CarreraRepository{
 	public List<Carrera> getCarrerasConEstudiantes() {
 		String get="SELECT DISTINCT c FROM Carrera c JOIN c.matriculaciones m WHERE SIZE(c.matriculaciones) > 0 ";
 		try {
+			em.getTransaction().begin();
 			TypedQuery<Carrera> typedQuery = this.em.createQuery(get, Carrera.class);
 			return typedQuery.getResultList();
 		}
@@ -65,6 +66,7 @@ public class CarreraRepositoryImpl implements CarreraRepository{
 	public List<Carrera> getAllCarreras() {
 		String get="SELECT c FROM Carrera c";
 		try {
+			em.getTransaction().begin();
 			TypedQuery<Carrera> typedQuery = this.em.createQuery(get, Carrera.class);
 			return typedQuery.getResultList();
 		}catch(Exception e) {

@@ -52,6 +52,7 @@ public class EstudianteRepositoryImpl implements EstudianteRepository{
 	public Estudiante getEstudiantePorNroLibreta(int nrolibreta) {
 		String get ="SELECT e FROM Estudiante e WHERE e.nrolibreta=:nrolibreta";
 		try {
+			em.getTransaction().begin();
 			TypedQuery<Estudiante> typedQuery = this.em.createQuery(get,Estudiante.class);
 			typedQuery.setParameter("nrolibreta", nrolibreta);
 			return typedQuery.getSingleResult();
@@ -69,6 +70,7 @@ public class EstudianteRepositoryImpl implements EstudianteRepository{
 	public List<Estudiante> getEstudiantesPorGenero(char genero) {
 		String get ="SELECT e FROM Estudiante e WHERE e.genero=:genero";
 		try {
+			em.getTransaction().begin();
 			TypedQuery<Estudiante> typedQuery = this.em.createQuery(get,Estudiante.class);
 			typedQuery.setParameter("genero", genero);
 			return typedQuery.getResultList();
@@ -86,6 +88,7 @@ public class EstudianteRepositoryImpl implements EstudianteRepository{
 	public List<Estudiante> getEstudiantesOrdenadoPor() {
 		String get ="SELECT e FROM Estudiante e ORDER BY e.nombre DESC";
 		try {
+			em.getTransaction().begin();
 			TypedQuery<Estudiante> typedQuery = this.em.createQuery(get,Estudiante.class);
 			return typedQuery.getResultList();
 		}
@@ -102,6 +105,7 @@ public class EstudianteRepositoryImpl implements EstudianteRepository{
 	public List<Estudiante> getAllEstudiantes() {
 		String get="SELECT e FROM Estudiante e";
 		try {
+			em.getTransaction().begin();
 			TypedQuery<Estudiante> typedQuery = this.em.createQuery(get, Estudiante.class);
 			return typedQuery.getResultList();
 		}
@@ -123,6 +127,7 @@ public class EstudianteRepositoryImpl implements EstudianteRepository{
 				+ "WHERE c.nombre = :carrera "
 				+ "AND e.ciudad  = :ciudad";
 		try {
+			em.getTransaction().begin();
 			TypedQuery<Estudiante> typedQuery = this.em.createQuery(get, Estudiante.class);
 			typedQuery.setParameter("carrera", nombreCarrera);
 			typedQuery.setParameter("ciudad", ciudad);

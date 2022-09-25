@@ -22,7 +22,7 @@ public class ServicioEstudianteImpl implements ServicioEstudiante{
 	}
 
 	@Override
-	public List<Estudiante> listarEstudiante() {
+	public List<Estudiante> obtenerAllEstudiantes() {
 		return er.getAllEstudiantes();
 	}
 
@@ -48,6 +48,10 @@ public class ServicioEstudianteImpl implements ServicioEstudiante{
 	@Override
 	public List<Estudiante> getEstudiantesPorCiudad(String nombreCarrera, String ciudad) {
 		return er.getEstudiantesPorCiudad(nombreCarrera, ciudad);
+	}
+	
+	public Estudiante getEstudiantePorNroLibreta(int lu) {
+		return er.getEstudiantePorNroLibreta(lu);
 	}
 
 }
