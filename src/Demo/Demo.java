@@ -89,9 +89,9 @@ public class Demo {
     	
     	Controller controller = new Controller();
     	
- //   	Estudiante e = new Estudiante(43304272,150752,"Benjamin","Aldaya",21,'M',"Tres arroyos");
+//    	Estudiante e = new Estudiante(43304272,150752,"Benjamin","Aldaya",21,'M',"Tres arroyos");
     	
-//    	Carrera carrera = controller.getCarrera(3);
+//    	Carrera carrera = controller.getCarrera(5);
 
     	
 //    	Carrera carrera = controller.getCarrera(1);

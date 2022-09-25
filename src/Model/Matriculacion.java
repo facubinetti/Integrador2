@@ -40,6 +40,10 @@ public class Matriculacion {
 	public void setEstudiante(Estudiante estudiante) {
 		this.estudiante = estudiante;
 	}
+	
+	public String getNombreCarrera() {
+		return this.carrera.getNombre();
+	}
 
 	public Carrera getCarrera() {
 		return carrera;

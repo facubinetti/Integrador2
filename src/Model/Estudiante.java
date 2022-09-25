@@ -45,6 +45,8 @@ public class Estudiante {
 		this.edad = edad;
 		this.genero = genero;
 		this.ciudad = ciudad;
+		this.dni = dni;
+		this.nrolibreta = lu;
 		this.matriculaciones = new ArrayList<Matriculacion>() ;
 	}
 
@@ -117,15 +119,15 @@ public class Estudiante {
 
 	@Override
 	public String toString() {
-		return "Estudiante [id_estudiante=" + id_estudiante + ", dni=" + dni + ", nrolibreta=" + nrolibreta
-				+ ", nombre=" + nombre + ", apellido=" + apellido + ", edad=" + edad + ", genero=" + genero
-				+ ", ciudad=" + ciudad + "]" + this.getCarrera();
+		return "Estudiante [id_estudiante= " + id_estudiante + ", dni= " + dni + ", nrolibreta= " + nrolibreta
+				+ ", nombre= " + nombre + ", apellido= " + apellido + ", edad=" + edad + ", genero= " + genero
+				+ ", ciudad= " + ciudad +", carrera= "+ this.getCarrera()+" ]";
 	}
 
 	private String getCarrera() {
 		if(matriculaciones.size() > 0) {
 			for(Matriculacion m: matriculaciones) {
-				return m.getCarrera().getNombre();
+				return m.getNombreCarrera();
 			}
 		}
 		return null;
