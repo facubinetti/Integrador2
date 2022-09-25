@@ -29,8 +29,8 @@ public class ServicioCarreraImpl implements ServicioCarrera{
 	}
 
 	@Override
-	public boolean eliminarCarrera(Carrera c) {
-		return cr.deleteCarrera(c);
+	public boolean eliminarCarrera(int id) {
+		return cr.deleteCarrera(id);
 	}
 	
 	public boolean actualizarCarrera(Carrera c) {

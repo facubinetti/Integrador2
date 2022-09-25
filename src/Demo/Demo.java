@@ -89,16 +89,20 @@ public class Demo {
     	
     	Controller controller = new Controller();
     	
-    	Estudiante e = new Estudiante(43304272,150752,"Benjamin","Aldaya",21,'M',"Tres arroyos");
+ //   	Estudiante e = new Estudiante(43304272,150752,"Benjamin","Aldaya",21,'M',"Tres arroyos");
     	
-    	Carrera carrera = controller.getCarrera(3);
+//    	Carrera carrera = controller.getCarrera(3);
 
     	
 //    	Carrera carrera = controller.getCarrera(1);
 //    	
-    	controller.altaEstudiante(e, carrera);
+//   	controller.altaEstudiante(e, carrera);
+    	
+    	
+//   	System.out.println(controller.eliminarEstudiante(401));
 //    	
 //    	
+    	
     	List<Estudiante> estudiantes = controller.getAllEstudiantes();
     	for(Estudiante est: estudiantes) {
     		System.out.println(est);

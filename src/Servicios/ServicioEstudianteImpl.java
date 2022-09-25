@@ -27,8 +27,8 @@ public class ServicioEstudianteImpl implements ServicioEstudiante{
 	}
 
 	@Override
-	public boolean eliminarEstudiante(Estudiante e) {
-		return er.deleteEstudiante(e);
+	public boolean eliminarEstudiante(int id) {
+		return er.deleteEstudiante(id);
 	}
 	
 	public boolean actualizarEstudiante(Estudiante e) {

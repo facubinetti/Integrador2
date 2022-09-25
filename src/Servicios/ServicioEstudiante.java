@@ -8,7 +8,7 @@ public interface ServicioEstudiante {
 
 	public boolean insertarEstudiante(Estudiante e);
 	public List<Estudiante> obtenerAllEstudiantes();
-	public boolean eliminarEstudiante(Estudiante e);
+	public boolean eliminarEstudiante(int id);
 	public boolean actualizarEstudiante(Estudiante e);
 	public Estudiante getEstudiantePorNroLibreta(int lu);
 	public List<Estudiante> getEstudiantesPorGenero(char genero);

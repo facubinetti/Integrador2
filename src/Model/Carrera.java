@@ -13,7 +13,7 @@ public class Carrera {
     @Column(nullable=false)
     String nombre;
 
-    @OneToMany(mappedBy = "carrera",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "carrera",fetch = FetchType.LAZY)
     List<Matriculacion> matriculaciones;
     
     //Constructores

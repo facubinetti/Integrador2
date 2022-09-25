@@ -23,8 +23,8 @@ public class Controller {
 	public boolean insertarEstudiante(Estudiante e) {
 		return this.se.insertarEstudiante(e);
 	}
-	public boolean eliminarEstudiante(Estudiante e) {
-		return this.se.eliminarEstudiante(e);
+	public boolean eliminarEstudiante(int id) {
+		return this.se.eliminarEstudiante(id);
 	};
 	public boolean actualizarEstudiante(Estudiante e) {
 		return this.se.actualizarEstudiante(e);
@@ -38,8 +38,8 @@ public class Controller {
 		return this.sc.actualizarCarrera(c);
 	};
 	
-	public boolean eliminarCarrera(Carrera c){
-		return this.sc.eliminarCarrera(c);
+	public boolean eliminarCarrera(int id){
+		return this.sc.eliminarCarrera(id);
 	};
 	
 	

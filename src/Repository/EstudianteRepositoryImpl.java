@@ -3,7 +3,7 @@ package Repository;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-
+import javax.persistence.Query;
 
 import Model.Estudiante;
 
@@ -32,17 +32,21 @@ public class EstudianteRepositoryImpl implements EstudianteRepository{
 	}
 	
 	@Override
-	public boolean deleteEstudiante(Estudiante e) {
-		em.getTransaction().begin();
-		if (em.contains(e)) {
-			em.remove(e);
-	        em.getTransaction().commit();
+	public boolean deleteEstudiante(int id) {
+		String delete = "DELETE FROM Estudiante e WHERE e.id_estudiante=:id";
+		try {
+			this.em.getTransaction().begin();
+			Query query = this.em.createQuery(delete);
+			query.setParameter("id", id).executeUpdate();
 			return true;
-		} else {
-			em.merge(e);
-	        em.getTransaction().commit();
-			return false;
 		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			em.getTransaction().commit();
+		}
+		return false;
 	}
 	
 	public boolean actualizarEstudiante(Estudiante e) {

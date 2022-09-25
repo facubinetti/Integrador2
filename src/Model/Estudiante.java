@@ -119,7 +119,16 @@ public class Estudiante {
 	public String toString() {
 		return "Estudiante [id_estudiante=" + id_estudiante + ", dni=" + dni + ", nrolibreta=" + nrolibreta
 				+ ", nombre=" + nombre + ", apellido=" + apellido + ", edad=" + edad + ", genero=" + genero
-				+ ", ciudad=" + ciudad + "]";
+				+ ", ciudad=" + ciudad + "]" + this.getCarrera();
+	}
+
+	private String getCarrera() {
+		if(matriculaciones.size() > 0) {
+			for(Matriculacion m: matriculaciones) {
+				return m.getCarrera().getNombre();
+			}
+		}
+		return null;
 	}
 	
 	

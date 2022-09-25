@@ -3,6 +3,7 @@ package Repository;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import Model.Carrera;
@@ -30,17 +31,21 @@ public class CarreraRepositoryImpl implements CarreraRepository{
 	}
 
 	@Override
-	public boolean deleteCarrera(Carrera c) {
-		em.getTransaction().begin();
-		if (em.contains(c)) {
-			em.remove(c);
-	        em.getTransaction().commit();
+	public boolean deleteCarrera(int id) {
+		String delete = "DELETE FROM Carrera c WHERE e.id_carrera=:id";
+		try {
+			this.em.getTransaction().begin();
+			Query query = this.em.createQuery(delete);
+			query.setParameter("id", id).executeUpdate();
 			return true;
-		} else {
-			em.merge(c);
-	        em.getTransaction().commit();
-			return false;
 		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			em.getTransaction().commit();
+		}
+		return false;
 	}
 	
 	public boolean actualizarCarrera(Carrera c) {
