@@ -30,6 +30,10 @@ public class ServicioEstudianteImpl implements ServicioEstudiante{
 	public boolean eliminarEstudiante(Estudiante e) {
 		return er.deleteEstudiante(e);
 	}
+	
+	public boolean actualizarEstudiante(Estudiante e) {
+		return er.actualizarEstudiante(e);
+	}
 
 	@Override
 	public List<Estudiante> getEstudiantesPorGenero(char genero) {

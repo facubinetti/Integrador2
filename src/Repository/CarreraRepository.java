@@ -9,6 +9,7 @@ public interface CarreraRepository {
 	
 	public boolean saveCarrera(Carrera c);
 	public boolean deleteCarrera(Carrera c);
+	public boolean actualizarCarrera(Carrera c);
 	public List<Carrera> getAllCarreras();
 	public List<Carrera> getCarrerasConEstudiantes();
 	public List<Estudiante> getEstudiantesPorCiudad(String nombreCarrera, String ciudad);

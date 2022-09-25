@@ -1,8 +1,9 @@
 package Controller;
 
 
-import Factory.FactoryEntityManager;
+import Factory.*;
 import Servicios.*;
+import Model.*;
 
 public class Controller {
 
@@ -15,6 +16,16 @@ public class Controller {
 		this.sc = new ServicioCarreraImpl(factoryEntity);
 		this.se = new ServicioEstudianteImpl(factoryEntity);
 	};
+	
+	
+	public boolean altaEstudiante(Estudiante e, Carrera c) {
+		Matriculacion m = new Matriculacion(e,c,false,0);
+		e.agregarMatriculacion(m);
+		c.agregarMatriculacion(m);
+		if(this.sc.actualizarCarrera(c)&&this.se.insertarEstudiante(e))
+			return true;
+		return false;
+	}
 	
 	
 }

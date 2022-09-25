@@ -33,6 +33,10 @@ public class ServicioCarreraImpl implements ServicioCarrera{
 	public boolean eliminarCarrera(Carrera c) {
 		return cr.deleteCarrera(c);
 	}
+	
+	public boolean actualizarCarrera(Carrera c) {
+		return cr.actualizarCarrera(c);
+	}
 
 	@Override
 	public List<Carrera> getCarrerasConEstudiantes() {

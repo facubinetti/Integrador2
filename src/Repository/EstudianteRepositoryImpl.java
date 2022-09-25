@@ -40,6 +40,15 @@ public class EstudianteRepositoryImpl implements EstudianteRepository{
 		}
 	}
 	
+	public boolean actualizarEstudiante(Estudiante e) {
+		if(em.contains(e)) {
+			em.merge(e);
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
 	@Override
 	public Estudiante getEstudiantePorNroLibreta(int nrolibreta) {
 		String get ="SELECT e FROM Estudiante e WHERE e.nrolibreta=:nrolibreta";

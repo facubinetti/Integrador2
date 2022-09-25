@@ -36,6 +36,15 @@ public class CarreraRepositoryImpl implements CarreraRepository{
 			return false;
 		}
 	}
+	
+	public boolean actualizarCarrera(Carrera c) {
+		if(em.contains(c)) {
+			em.merge(c);
+			return true;
+		}else {
+			return false;
+		}
+	}
 
 	@Override
 	public List<Carrera> getCarrerasConEstudiantes() {
