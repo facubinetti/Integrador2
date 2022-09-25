@@ -5,7 +5,6 @@ import java.util.List;
 
 import Factory.FactoryEntityManager;
 import Model.Carrera;
-import Model.Estudiante;
 import Repository.CarreraRepositoryImpl;
 
 public class ServicioCarreraImpl implements ServicioCarrera{
@@ -41,11 +40,6 @@ public class ServicioCarreraImpl implements ServicioCarrera{
 	@Override
 	public List<Carrera> getCarrerasConEstudiantes() {
 		return cr.getCarrerasConEstudiantes();
-	}
-
-	@Override
-	public List<Estudiante> getEstudiantesPorCiudad(String nombreCarrera, String ciudad) {
-		return cr.getEstudiantesPorCiudad(nombreCarrera, ciudad);
 	}
 
 }

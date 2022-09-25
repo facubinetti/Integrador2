@@ -44,5 +44,10 @@ public class ServicioEstudianteImpl implements ServicioEstudiante{
 	public List<Estudiante> getEstudiantesOrdenadoPor() {
 		return er.getEstudiantesOrdenadoPor();
 	}
+	
+	@Override
+	public List<Estudiante> getEstudiantesPorCiudad(String nombreCarrera, String ciudad) {
+		return er.getEstudiantesPorCiudad(nombreCarrera, ciudad);
+	}
 
 }
