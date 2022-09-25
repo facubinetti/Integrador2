@@ -10,6 +10,7 @@ public interface ServicioCarrera {
 	public List<Carrera> listarCarreras();
 	public boolean eliminarCarrera(Carrera c);
 	public boolean actualizarCarrera(Carrera c);
+	public Carrera getCarrera(int id);
 	public List<Carrera> getCarrerasConEstudiantes();
 
 }

@@ -42,4 +42,11 @@ public class ServicioCarreraImpl implements ServicioCarrera{
 		return cr.getCarrerasConEstudiantes();
 	}
 
+
+
+	@Override
+	public Carrera getCarrera(int id) {
+		return cr.getCarrera(id);
+	}
+
 }

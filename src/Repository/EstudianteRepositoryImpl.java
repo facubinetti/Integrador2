@@ -19,31 +19,40 @@ public class EstudianteRepositoryImpl implements EstudianteRepository{
 
 	@Override
 	public boolean saveEstudiante(Estudiante e) {
+		em.getTransaction().begin();
 		if (e.getId_estudiante()  < 1) {
 			em.persist(e);
+	        em.getTransaction().commit();
 			return true;
 		} else {
 			e = em.merge(e);
+	        em.getTransaction().commit();
 			return false;
 		}
 	}
 	
 	@Override
 	public boolean deleteEstudiante(Estudiante e) {
+		em.getTransaction().begin();
 		if (em.contains(e)) {
 			em.remove(e);
+	        em.getTransaction().commit();
 			return true;
 		} else {
 			em.merge(e);
+	        em.getTransaction().commit();
 			return false;
 		}
 	}
 	
 	public boolean actualizarEstudiante(Estudiante e) {
+		em.getTransaction().begin();
 		if(em.contains(e)) {
 			em.merge(e);
+	        em.getTransaction().commit();
 			return true;
 		}else {
+	        em.getTransaction().commit();
 			return false;
 		}
 	}
@@ -61,7 +70,6 @@ public class EstudianteRepositoryImpl implements EstudianteRepository{
 			e.printStackTrace();
 		}finally {
 	        em.getTransaction().commit();
-	        em.close();
 		}
 		return null;
 	}
@@ -79,7 +87,6 @@ public class EstudianteRepositoryImpl implements EstudianteRepository{
 			e.printStackTrace();
 		}finally {
 	        em.getTransaction().commit();
-	        em.close();
 		}
 		return null;
 	}
@@ -96,7 +103,6 @@ public class EstudianteRepositoryImpl implements EstudianteRepository{
 			e.printStackTrace();
 		}finally {
 	        em.getTransaction().commit();
-	        em.close();
 		}
 		return null;
 	}
@@ -113,7 +119,6 @@ public class EstudianteRepositoryImpl implements EstudianteRepository{
 			e.printStackTrace();
 		}finally {
 	        em.getTransaction().commit();
-	        em.close();
 		}
 		return null;
 
@@ -136,7 +141,6 @@ public class EstudianteRepositoryImpl implements EstudianteRepository{
 			e.printStackTrace();
 		}finally {
 	        em.getTransaction().commit();
-	        em.close();
 		}
 		return null;
 	}

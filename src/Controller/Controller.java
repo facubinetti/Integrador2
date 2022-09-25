@@ -21,13 +21,13 @@ public class Controller {
 	
 	
 	public boolean insertarEstudiante(Estudiante e) {
-		return this.insertarEstudiante(e);
+		return this.se.insertarEstudiante(e);
 	}
 	public boolean eliminarEstudiante(Estudiante e) {
 		return this.se.eliminarEstudiante(e);
 	};
 	public boolean actualizarEstudiante(Estudiante e) {
-		return this.actualizarEstudiante(e);
+		return this.se.actualizarEstudiante(e);
 	};
 	
 	public boolean insertarCarrera(Carrera c) {
@@ -35,7 +35,7 @@ public class Controller {
 	};
 
 	public boolean actualizarCarrera(Carrera c) {
-		return this.actualizarCarrera(c);
+		return this.sc.actualizarCarrera(c);
 	};
 	
 	public boolean eliminarCarrera(Carrera c){
@@ -47,8 +47,12 @@ public class Controller {
 		return this.sc.listarCarreras();
 	};
 	
+	public Carrera getCarrera(int id) {
+		return this.sc.getCarrera(id);
+	}
+	
 	public List<Carrera> getCarrerasConEstudiantes(){
-		return this.getCarrerasConEstudiantes();
+		return this.sc.getCarrerasConEstudiantes();
 	};
 	
 
@@ -57,7 +61,7 @@ public class Controller {
 		Matriculacion m = new Matriculacion(e,c,false,0);
 		e.agregarMatriculacion(m);
 		c.agregarMatriculacion(m);
-		if(this.sc.actualizarCarrera(c)&&insertarEstudiante(e))
+		if(actualizarCarrera(c)&&insertarEstudiante(e))
 			return true;
 		return false;
 	}

@@ -2,7 +2,10 @@ package Demo;
 
 import java.util.List;
 
+import org.hibernate.Hibernate;
+
 import Controller.Controller;
+import Model.Carrera;
 import Model.Estudiante;
 
 //import Model.Carrera;
@@ -84,11 +87,21 @@ public class Demo {
     	
     	
     	
-    	Controller c = new Controller();
+    	Controller controller = new Controller();
     	
-    	List<Estudiante> est = c.getAllEstudiantes();
-    	for(Estudiante e: est) {
-    		System.out.println(e);
+    	Estudiante e = new Estudiante(43304272,150752,"Benjamin","Aldaya",21,'M',"Tres arroyos");
+    	
+    	Carrera carrera = controller.getCarrera(3);
+
+    	
+//    	Carrera carrera = controller.getCarrera(1);
+//    	
+    	controller.altaEstudiante(e, carrera);
+//    	
+//    	
+    	List<Estudiante> estudiantes = controller.getAllEstudiantes();
+    	for(Estudiante est: estudiantes) {
+    		System.out.println(est);
     	}
     }
 }
