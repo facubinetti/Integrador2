@@ -2,6 +2,7 @@ package Servicios;
 
 import java.util.List;
 
+import DTO.CarreraDTO;
 import Model.Carrera;
 
 public interface ServicioCarrera {
@@ -12,5 +13,6 @@ public interface ServicioCarrera {
 	public boolean actualizarCarrera(Carrera c);
 	public Carrera getCarrera(int id);
 	public List<Carrera> getCarrerasConEstudiantes();
+	public List<CarreraDTO> getReporteCarreras();
 
 }

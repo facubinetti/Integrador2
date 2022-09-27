@@ -47,11 +47,9 @@ public class ServicioCarreraImpl implements ServicioCarrera{
 		return cr.getCarrera(id);
 	}
 	
-	private List<CarreraDTO> reporteCarreras() {
-		List<CarreraDTO> reporte = new ArrayList<CarreraDTO>();
-
-		
-		return reporte;	
+	public  List<CarreraDTO> getReporteCarreras() {
+		return cr.getReporteCarreras();
 	}
+	
 
 }

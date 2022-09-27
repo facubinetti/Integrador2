@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Hibernate;
 
 import Controller.Controller;
+import DTO.CarreraDTO;
 import Model.Carrera;
 import Model.Estudiante;
 
@@ -26,41 +27,41 @@ public class Demo {
 
     public static void main(String[] args) {
 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Example");
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
+//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Example");
+//        EntityManager em = emf.createEntityManager();
+//        em.getTransaction().begin();
 
-        Estudiante est1 = new Estudiante(1,1,"Juan","Perez",26,'M',"Tres Arroyos");
-        Estudiante est2 = new Estudiante(2,2,"Manuela","Ruiz",26,'F',"Tres Arroyos");
-
-        Carrera car1 = new Carrera("TUDAI", 3);
-        Carrera car2 = new Carrera("Ingenieria en Sistemas", 5);
-        Carrera car3 = new Carrera("Contador", 6); // sin matri
-
-        
-        Matriculacion mat1 = new Matriculacion(est1,car1,false, 2020);
-        Matriculacion mat2 = new Matriculacion(est2,car1,true, 2020 );
-        Matriculacion mat3 = new Matriculacion(est2,car2,true,2021);
+//        Estudiante est1 = new Estudiante(1,1,"Juan","Perez",26,'M',"Tres Arroyos");
+//        Estudiante est2 = new Estudiante(2,2,"Manuela","Ruiz",26,'F',"Tres Arroyos");
+//
+//        Carrera car1 = new Carrera("TUDAI", 3);
+//        Carrera car2 = new Carrera("Ingenieria en Sistemas", 5);
+//        Carrera car3 = new Carrera("Contador", 6); // sin matri
+//
+//        
+//        Matriculacion mat1 = new Matriculacion(est1,car1,false, 2020);
+//        Matriculacion mat2 = new Matriculacion(est2,car1,true, 2020 );
+//        Matriculacion mat3 = new Matriculacion(est2,car2,true,2021);
 
 ////        estudiante 1
-        est1.agregarMatriculacion(mat1);
-        car1.agregarMatriculacion(mat1);
-        car2.agregarMatriculacion(mat3);
+//        est1.agregarMatriculacion(mat1);
+//        car1.agregarMatriculacion(mat1);
+//        car2.agregarMatriculacion(mat3);
 //
 ////        estudiante 2
-        est2.agregarMatriculacion(mat2);
-        car1.agregarMatriculacion(mat2);
-
-        em.persist(est1);
-        em.persist(est2);
-        em.persist(car1);
-        em.persist(car2);
-        em.persist(car3);
-        em.persist(mat1);
-        em.persist(mat2);
-        em.persist(mat3);
+//        est2.agregarMatriculacion(mat2);
+//        car1.agregarMatriculacion(mat2);
 //
-//       CarreraRepositoryImpl cri = new CarreraRepositoryImpl(em);
+//        em.persist(est1);
+//        em.persist(est2);
+//        em.persist(car1);
+//        em.persist(car2);
+//        em.persist(car3);
+//        em.persist(mat1);
+//        em.persist(mat2);
+//        em.persist(mat3);
+//
+  //     CarreraRepositoryImpl cri = new CarreraRepositoryImpl(em);
 ////        List<Estudiante> listE= cri.getEstudiantesPorCiudad("TUDAI", "Tres Arroyos");
 ////        for(int i=0; i< listE.size(); i++) {
 ////        	System.out.println(listE.get(i));	
@@ -82,14 +83,20 @@ public class Demo {
 //	     	System.out.println(listE2.get(i));	
 //	     	
 //	     }
+        
+       Controller controller = new Controller(); 
+        List<CarreraDTO> listE2= controller.getReporteCarreras();
+	     for(int i=0; i< listE2.size(); i++) {
+	     	System.out.println(listE2.get(i));	
+	     }
 //        
-        em.getTransaction().commit();
-        em.close();
-        emf.close();
+//        em.getTransaction().commit();
+//        em.close();
+//        emf.close();
     	
     	
     	
-    	Controller controller = new Controller();
+    	
     	
 //    	Estudiante e = new Estudiante(43304272,150752,"Benjamin","Aldaya",21,'M',"Tres arroyos");
     	
@@ -109,10 +116,6 @@ public class Demo {
 //    	Carrera carrera = controller.getCarrera(4);
 //    	controller.altaEstudiante(e, carrera);  
     	
-    	List<Carrera> carrerasPorCantInscriptos =controller.getCarrerasConEstudiantes();
-    	for(Carrera car: carrerasPorCantInscriptos) {
-    		System.out.println(car);
-    	}
     	
 //    	List<Estudiante> estudiantes = controller.getAllEstudiantes();
 //    	for(Estudiante est: estudiantes) {

@@ -4,6 +4,7 @@ package Controller;
 import java.time.LocalDate;
 import java.util.List;
 
+import DTO.CarreraDTO;
 import Factory.*;
 import Servicios.*;
 import Model.*;
@@ -86,5 +87,8 @@ public class Controller {
 		return this.se.getEstudiantesPorCiudad(carrera, ciudad);
 	}
 	
+	public List<CarreraDTO> getReporteCarreras(){
+		return this.sc.getReporteCarreras();
+	}
 	
 }

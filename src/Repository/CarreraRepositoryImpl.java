@@ -113,14 +113,17 @@ public class CarreraRepositoryImpl implements CarreraRepository{
 	}
 	
 	public List<CarreraDTO>  getReporteCarreras() {
-		String get= "SELECT e, c "
-				+ "FROM Carrera c JOIN Matriculacion m ON c.id_carrera=m.id_carrera "
-				+ "JOIN Estudiante e ON m.id_estudiante = e.id_estudiante"
-				+ "WHERE m.inscripcion >= ':minimo' <= ':maximo' ";
-		try {
+		
+		String get= "SELECT DISTINCT new DTO.CarreraDTO (c.id_carrera AS idCarrera, c.nombre AS nombreCarrera, COUNT(e.id_estudiante) AS cantInscriptos, "
+				+ "COUNT(CASE WHEN (m.graduado = :trueValue) THEN 1 END) AS cantEgresados, CAST(m.anioInscripcion AS long) AS anioInscripcion) "
+				+ "from Carrera c "
+				+ "left outer join Matriculacion m on c.id_carrera = m.carrera "
+				+ "left outer join Estudiante e on m.estudiante = e.id_estudiante "
+				+ "group by m.anioInscripcion,c.id_carrera, c.nombre ";
+		try { 
 			em.getTransaction().begin();
-			TypedQuery<CarreraDTO> typedQuery = this.em.createQuery(get,CarreraDTO.class);
-			return typedQuery.getResultList();
+			List<CarreraDTO> listaDTO = this.em.createQuery(get, CarreraDTO.class).setParameter("trueValue", true).getResultList();
+			return listaDTO;
 		}
 		catch(Exception e) {
 			e.printStackTrace();
@@ -129,5 +132,7 @@ public class CarreraRepositoryImpl implements CarreraRepository{
 		}
 		return null;
 	}
+	
+
 
 }
