@@ -65,8 +65,11 @@ public class CarreraRepositoryImpl implements CarreraRepository{
 
 	@Override
 	public List<Carrera> getCarrerasConEstudiantes() {
-		String get="SELECT DISTINCT c FROM Carrera c JOIN c.matriculaciones m WHERE SIZE(c.matriculaciones) > 0 ";
-		//String get= "SELECT COUNT(m.idMatricula) FROM Matriculacion m GROUP BY m.carrera ORDER BY COUNT(m.idMatricula) DESC";
+		String get="SELECT DISTINCT c "
+				+ "FROM Carrera c LEFT OUTER JOIN c.matriculaciones m "
+				+ "WHERE SIZE(c.matriculaciones) > 0 "
+			//	+ "ORDER BY SIZE(c.matriculaciones), c.id_carrera, c.nombre, c.duracion DESC "; //No se puede ordenar por SIZE(). Ordenar en java???
+		;
 		try {
 			em.getTransaction().begin();
 			TypedQuery<Carrera> typedQuery = this.em.createQuery(get, Carrera.class);
@@ -114,12 +117,13 @@ public class CarreraRepositoryImpl implements CarreraRepository{
 	
 	public List<CarreraDTO>  getReporteCarreras() {
 		
-		String get= "SELECT DISTINCT new DTO.CarreraDTO (c.id_carrera AS idCarrera, c.nombre AS nombreCarrera, COUNT(e.id_estudiante) AS cantInscriptos, "
+		String get= "SELECT new DTO.CarreraDTO (c.id_carrera AS idCarrera, c.nombre AS nombreCarrera, COUNT(e.id_estudiante) AS cantInscriptos, "
 				+ "COUNT(CASE WHEN (m.graduado = :trueValue) THEN 1 END) AS cantEgresados, CAST(m.anioInscripcion AS long) AS anioInscripcion) "
 				+ "from Carrera c "
 				+ "left outer join Matriculacion m on c.id_carrera = m.carrera "
 				+ "left outer join Estudiante e on m.estudiante = e.id_estudiante "
-				+ "group by m.anioInscripcion,c.id_carrera, c.nombre ";
+				+ "group by m.anioInscripcion,c.id_carrera, c.nombre "
+				+ "ORDER BY c.nombre, m.anioInscripcion, c.id_carrera, cantInscriptos, cantEgresados ASC";
 		try { 
 			em.getTransaction().begin();
 			List<CarreraDTO> listaDTO = this.em.createQuery(get, CarreraDTO.class).setParameter("trueValue", true).getResultList();

@@ -85,10 +85,11 @@ public class Demo {
 //	     }
         
        Controller controller = new Controller(); 
-        List<CarreraDTO> listE2= controller.getReporteCarreras();
+        List<Carrera> listE2= controller.getCarrerasConEstudiantes();
 	     for(int i=0; i< listE2.size(); i++) {
 	     	System.out.println(listE2.get(i));	
 	     }
+	     
 //        
 //        em.getTransaction().commit();
 //        em.close();
@@ -122,4 +123,5 @@ public class Demo {
 //    		System.out.println(est);
 //    	}
     }
+    
 }
