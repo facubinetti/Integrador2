@@ -1,12 +1,15 @@
 package Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import DTO.CarreraDTO;
 import Model.Carrera;
+import Model.Estudiante;
 
 
 public class CarreraRepositoryImpl implements CarreraRepository{
@@ -63,6 +66,7 @@ public class CarreraRepositoryImpl implements CarreraRepository{
 	@Override
 	public List<Carrera> getCarrerasConEstudiantes() {
 		String get="SELECT DISTINCT c FROM Carrera c JOIN c.matriculaciones m WHERE SIZE(c.matriculaciones) > 0 ";
+		//String get= "SELECT COUNT(m.idMatricula) FROM Matriculacion m GROUP BY m.carrera ORDER BY COUNT(m.idMatricula) DESC";
 		try {
 			em.getTransaction().begin();
 			TypedQuery<Carrera> typedQuery = this.em.createQuery(get, Carrera.class);
@@ -108,7 +112,22 @@ public class CarreraRepositoryImpl implements CarreraRepository{
 		return null;
 	}
 	
-	
-
+	public List<CarreraDTO>  getReporteCarreras() {
+		String get= "SELECT e, c "
+				+ "FROM Carrera c JOIN Matriculacion m ON c.id_carrera=m.id_carrera "
+				+ "JOIN Estudiante e ON m.id_estudiante = e.id_estudiante"
+				+ "WHERE m.inscripcion >= ':minimo' <= ':maximo' ";
+		try {
+			em.getTransaction().begin();
+			TypedQuery<CarreraDTO> typedQuery = this.em.createQuery(get,CarreraDTO.class);
+			return typedQuery.getResultList();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+	        em.getTransaction().commit();
+		}
+		return null;
+	}
 
 }

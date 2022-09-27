@@ -1,5 +1,8 @@
 package Model;
 
+import java.sql.Timestamp;
+import java.time.LocalDate;
+
 import javax.persistence.*;
 
 
@@ -20,17 +23,20 @@ public class Matriculacion {
     @Column
     private boolean graduado;
     
-    @Column(name="antiguedad_en_carrera")
-    private int antiguedad;
+//    @Column(name = "local_date", columnDefinition = "DATE")
+//    private LocalDate inscripcion;
+    
+    @Column
+  private int anioInscripcion;
 
 	public Matriculacion() {
 	}
 
-	public Matriculacion(Estudiante estudiante, Carrera carrera, boolean graduado, int antiguedad) {
+	public Matriculacion(Estudiante estudiante, Carrera carrera, boolean graduado, int inscripcion) {
 		this.estudiante = estudiante;
 		this.carrera = carrera;
 		this.graduado = graduado;
-		this.antiguedad = antiguedad;
+		this.anioInscripcion= inscripcion;
 	}
 
 	public Estudiante getEstudiante() {
@@ -61,22 +67,22 @@ public class Matriculacion {
 		this.graduado = graduado;
 	}
 
-	public int getAntiguedad() {
-		return antiguedad;
-	}
-
-	public void setAntiguedad(int antiguedad) {
-		this.antiguedad = antiguedad;
-	}
-
 	public int getIdMatricula() {
 		return idMatricula;
+	}
+	
+	public int getInscripcion() {
+		return anioInscripcion;
+	}
+
+	public void setInscripcion(int inscripcion) {
+		this.anioInscripcion = inscripcion;
 	}
 
 	@Override
 	public String toString() {
 		return "Matriculacion [idcurso=" + idMatricula + ", estudiante=" + estudiante + ", carrera=" + carrera
-				+ ", graduado=" + graduado + ", antiguedad=" + antiguedad + "]";
+				+ ", graduado=" + graduado  + "]";
 	}
 
 

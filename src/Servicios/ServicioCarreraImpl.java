@@ -1,8 +1,9 @@
 package Servicios;
 
+import java.util.ArrayList;
 import java.util.List;
 
-
+import DTO.CarreraDTO;
 import Factory.FactoryEntityManager;
 import Model.Carrera;
 import Repository.CarreraRepositoryImpl;
@@ -15,7 +16,6 @@ public class ServicioCarreraImpl implements ServicioCarrera{
 		this.fem = fem;
 		this.cr = new CarreraRepositoryImpl(fem.getEntityManger());
 	};
-	
 	
 
 	@Override
@@ -42,11 +42,16 @@ public class ServicioCarreraImpl implements ServicioCarrera{
 		return cr.getCarrerasConEstudiantes();
 	}
 
-
-
 	@Override
 	public Carrera getCarrera(int id) {
 		return cr.getCarrera(id);
+	}
+	
+	private List<CarreraDTO> reporteCarreras() {
+		List<CarreraDTO> reporte = new ArrayList<CarreraDTO>();
+
+		
+		return reporte;	
 	}
 
 }

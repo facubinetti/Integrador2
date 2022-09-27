@@ -1,6 +1,8 @@
 package Model;
 
 import javax.persistence.*;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,17 +10,21 @@ import java.util.List;
 public class Carrera {
     @Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-    int id_carrera;
+    private int id_carrera;
 
     @Column(nullable=false)
-    String nombre;
+    private String nombre;
+    
+    @Column
+    private int duracion;
 
     @OneToMany(mappedBy = "carrera",fetch = FetchType.LAZY)
-    List<Matriculacion> matriculaciones;
+    private List<Matriculacion> matriculaciones;
     
     //Constructores
-	public Carrera( String nombre) {
+	public Carrera( String nombre, int duracion) {
 		this.nombre = nombre;
+		this.duracion=duracion;
 		this.matriculaciones = new ArrayList<Matriculacion>();
 	}
 
@@ -31,7 +37,7 @@ public class Carrera {
 	}
 
 	public void setNombre(String nombre) {
-		nombre = nombre;
+		this.nombre = nombre;
 	}
 
 	public int getId_carrera() {
@@ -42,9 +48,18 @@ public class Carrera {
 		matriculaciones.add(mat);
 	}
 
+	public int getDuracion() {
+		return duracion;
+	}
+
+	public void setDuracion(int duracion) {
+		this.duracion = duracion;
+	}
+
+
 	@Override
 	public String toString() {
-		return "Carrera [id_carrera=" + id_carrera + ", nombre=" + nombre + ", matriculaciones=" + matriculaciones.size()
+		return "Carrera [id_carrera=" + id_carrera + ", nombre=" + nombre + ", duracion=" + duracion + ", matriculaciones=" + matriculaciones.size()
 				+ "]";
 	}
 

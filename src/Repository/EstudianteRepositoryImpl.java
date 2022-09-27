@@ -96,8 +96,8 @@ public class EstudianteRepositoryImpl implements EstudianteRepository{
 	}
 
 	@Override
-	public List<Estudiante> getEstudiantesOrdenadoPor() {
-		String get ="SELECT e FROM Estudiante e ORDER BY e.nombre DESC";
+	public List<Estudiante> getEstudiantesOrdenadoPorApellidoYNombre() {
+		String get ="SELECT e FROM Estudiante e ORDER BY e.apellido, e.nombre ASC";
 		try {
 			em.getTransaction().begin();
 			TypedQuery<Estudiante> typedQuery = this.em.createQuery(get,Estudiante.class);

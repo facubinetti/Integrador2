@@ -1,6 +1,7 @@
 package Controller;
 
 
+import java.time.LocalDate;
 import java.util.List;
 
 import Factory.*;
@@ -55,10 +56,9 @@ public class Controller {
 		return this.sc.getCarrerasConEstudiantes();
 	};
 	
-
 	
 	public boolean altaEstudiante(Estudiante e, Carrera c) {
-		Matriculacion m = new Matriculacion(e,c,false,0);
+		Matriculacion m = new Matriculacion(e,c,false, 2020 );
 		e.agregarMatriculacion(m);
 		c.agregarMatriculacion(m);
 		if(actualizarCarrera(c)&&insertarEstudiante(e))
@@ -66,7 +66,6 @@ public class Controller {
 		return false;
 	}
 	
-
 	public List<Estudiante> getAllEstudiantes(){
 		return this.se.obtenerAllEstudiantes();
 	}
@@ -80,7 +79,7 @@ public class Controller {
 	}
 	
 	public List<Estudiante> getEstudianteOrdenado(){
-		return this.se.getEstudiantesOrdenadoPor();
+		return this.se.getEstudiantesOrdenadoPorApellidoYNombre();
 	}
 	
 	public List<Estudiante> getEstudiantePorCiudad(String carrera, String ciudad){

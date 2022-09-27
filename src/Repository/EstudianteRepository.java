@@ -12,7 +12,7 @@ public interface EstudianteRepository {
 	public List<Estudiante> getAllEstudiantes();
 	public Estudiante getEstudiantePorNroLibreta(int lu);
 	public List<Estudiante> getEstudiantesPorGenero(char genero);
-	public List<Estudiante> getEstudiantesOrdenadoPor();//criterio de ordenamiento
+	public List<Estudiante> getEstudiantesOrdenadoPorApellidoYNombre();//criterio de ordenamiento
 	public List<Estudiante> getEstudiantesPorCiudad(String nombreCarrera,String ciudad);
 
 }

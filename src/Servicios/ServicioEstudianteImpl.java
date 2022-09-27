@@ -41,8 +41,8 @@ public class ServicioEstudianteImpl implements ServicioEstudiante{
 	}
 
 	@Override
-	public List<Estudiante> getEstudiantesOrdenadoPor() {
-		return er.getEstudiantesOrdenadoPor();
+	public List<Estudiante> getEstudiantesOrdenadoPorApellidoYNombre() {
+		return er.getEstudiantesOrdenadoPorApellidoYNombre();
 	}
 	
 	@Override
