@@ -20,14 +20,14 @@ public class Matriculacion {
     @JoinColumn(name = "id_carrera") //FK
     private Carrera carrera;
 
-    @Column
+    @Column(name="graduado")
     private boolean graduado;
     
 //    @Column(name = "local_date", columnDefinition = "DATE")
 //    private LocalDate inscripcion;
     
-    @Column
-  private int anioInscripcion;
+    @Column(name="anioInscripcion")
+    private int anioInscripcion;
 
 	public Matriculacion() {
 	}
@@ -36,7 +36,7 @@ public class Matriculacion {
 		this.estudiante = estudiante;
 		this.carrera = carrera;
 		this.graduado = graduado;
-		this.anioInscripcion= inscripcion;
+		this.anioInscripcion = inscripcion;
 	}
 
 	public Estudiante getEstudiante() {

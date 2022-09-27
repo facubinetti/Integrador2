@@ -38,8 +38,7 @@ public class Estudiante {
     @OneToMany (mappedBy = "estudiante",fetch = FetchType.LAZY)
     List<Matriculacion> matriculaciones;
 
-    public Estudiante( int dni, int lu,String nombre, String apellido, int edad,
-            char genero, String ciudad) {
+    public Estudiante( int dni, int lu,String nombre, String apellido, int edad ,char genero, String ciudad) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.edad = edad;

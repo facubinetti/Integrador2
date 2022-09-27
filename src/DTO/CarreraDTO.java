@@ -1,9 +1,6 @@
 package DTO;
 
-import java.io.Serializable;
-import java.time.LocalTime;
-
-public class CarreraDTO implements Serializable{
+public class CarreraDTO{
 
 	private int idCarrera;
 	private String nombreCarrera;

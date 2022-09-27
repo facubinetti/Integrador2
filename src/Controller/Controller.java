@@ -1,8 +1,17 @@
 package Controller;
 
 
-import java.time.LocalDate;
+import static java.lang.Integer.parseInt;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
 
 import DTO.CarreraDTO;
 import Factory.*;
@@ -37,7 +46,13 @@ public class Controller {
 	};
 
 	public boolean actualizarCarrera(Carrera c) {
-		return this.sc.actualizarCarrera(c);
+		if (this.sc.actualizarCarrera(c)) {
+			return true;
+		} 
+		else if (this.insertarCarrera(c)) {
+			return true;
+		};
+		return false;
 	};
 	
 	public boolean eliminarCarrera(int id){
@@ -59,11 +74,14 @@ public class Controller {
 	
 	
 	public boolean altaEstudiante(Estudiante e, Carrera c) {
-		Matriculacion m = new Matriculacion(e,c,false, 2020 );
-		e.agregarMatriculacion(m);
-		c.agregarMatriculacion(m);
-		if(actualizarCarrera(c)&&insertarEstudiante(e))
-			return true;
+		if(e != null && c != null) {
+			Matriculacion mat = new Matriculacion(e,c,false,2020);
+			e.agregarMatriculacion(mat);
+			c.agregarMatriculacion(mat);
+			if(this.actualizarCarrera(c) && this.insertarEstudiante(e)) {
+				return true;
+			}
+		}
 		return false;
 	}
 	
@@ -90,5 +108,53 @@ public class Controller {
 	public List<CarreraDTO> getReporteCarreras(){
 		return this.sc.getReporteCarreras();
 	}
+	
+	
+	public void cargarDatos() {
+		List<Carrera> carreras = leerCarreras();
+		try {
+			@SuppressWarnings("deprecation")
+			CSVParser parser = CSVFormat.DEFAULT.withHeader().parse(new FileReader("./src/assets/estudiantes100.csv"));
+			System.out.println("Estoy cargando los productos...");
+			for(CSVRecord row: parser) {
+				Estudiante tmp = new Estudiante(parseInt(row.get("dni")),parseInt(row.get("nrolibreta")),row.get("nombre"),row.get("apellido"),parseInt(row.get("edad")),row.get("genero").charAt(0),row.get("ciudad"));
+				altaEstudiante(tmp, carreras.get((int) (Math.random()*19+1)));
+			}
+			System.out.println("No se me da nada mal");
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	private List<Carrera> leerCarreras(){
+		List<Carrera> car = new ArrayList<>();
+		try {
+			@SuppressWarnings("deprecation")
+			CSVParser parser = CSVFormat.DEFAULT.withHeader().parse(new FileReader("./src/assets/carreras20.csv"));
+			System.out.println("Estoy cargando los productos...");
+			for(CSVRecord row: parser) {
+				Carrera tmp = new Carrera(row.get("nombre"),parseInt(row.get("duracion")));
+				car.add(tmp);
+			}
+			System.out.println("No se me da nada mal");
+			return car;
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return car;
+	}
+	
+	
+
 	
 }

@@ -2,6 +2,9 @@ package Demo;
 
 import java.util.List;
 
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
 import org.hibernate.Hibernate;
 
 import Controller.Controller;
@@ -15,6 +18,9 @@ import Model.Matriculacion;
 import Repository.CarreraRepositoryImpl;
 import Repository.EstudianteRepositoryImpl;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,35 +29,35 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import static java.lang.Float.parseFloat;
+import static java.lang.Integer.parseInt;
+
 public class Demo {
 
     public static void main(String[] args) {
 
-//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Example");
-//        EntityManager em = emf.createEntityManager();
-//        em.getTransaction().begin();
+       EntityManagerFactory emf = Persistence.createEntityManagerFactory("Example");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+//
 
-//        Estudiante est1 = new Estudiante(1,1,"Juan","Perez",26,'M',"Tres Arroyos");
-//        Estudiante est2 = new Estudiante(2,2,"Manuela","Ruiz",26,'F',"Tres Arroyos");
-//
-//        Carrera car1 = new Carrera("TUDAI", 3);
-//        Carrera car2 = new Carrera("Ingenieria en Sistemas", 5);
-//        Carrera car3 = new Carrera("Contador", 6); // sin matri
-//
-//        
+////
+
+////
+////        
 //        Matriculacion mat1 = new Matriculacion(est1,car1,false, 2020);
 //        Matriculacion mat2 = new Matriculacion(est2,car1,true, 2020 );
 //        Matriculacion mat3 = new Matriculacion(est2,car2,true,2021);
-
-////        estudiante 1
+//
+//////        estudiante 1
 //        est1.agregarMatriculacion(mat1);
 //        car1.agregarMatriculacion(mat1);
 //        car2.agregarMatriculacion(mat3);
-//
-////        estudiante 2
+////
+//////        estudiante 2
 //        est2.agregarMatriculacion(mat2);
 //        car1.agregarMatriculacion(mat2);
-//
+////
 //        em.persist(est1);
 //        em.persist(est2);
 //        em.persist(car1);
@@ -60,7 +66,7 @@ public class Demo {
 //        em.persist(mat1);
 //        em.persist(mat2);
 //        em.persist(mat3);
-//
+       
   //     CarreraRepositoryImpl cri = new CarreraRepositoryImpl(em);
 ////        List<Estudiante> listE= cri.getEstudiantesPorCiudad("TUDAI", "Tres Arroyos");
 ////        for(int i=0; i< listE.size(); i++) {
@@ -84,16 +90,42 @@ public class Demo {
 //	     	
 //	     }
         
-       Controller controller = new Controller(); 
-        List<Carrera> listE2= controller.getCarrerasConEstudiantes();
-	     for(int i=0; i< listE2.size(); i++) {
-	     	System.out.println(listE2.get(i));	
-	     }
+//      Controller controller = new Controller();
+       
+     Estudiante est1 = new Estudiante(1,1,"Juan","Perez",26,'M',"Tres Arroyos");
+     Estudiante est2 = new Estudiante(2,2,"Manuela","Ruiz",26,'F',"Tres Arroyos");
+     
+     Carrera car1 = new Carrera("TUDAI", 3);
+     Carrera car2 = new Carrera("Ingenieria en Sistemas", 5);
+     Carrera car3 = new Carrera("Contador", 6); // sin matri
+     
+     Matriculacion mat1 = new Matriculacion(est1,car1,false,2022);
+     car1.agregarMatriculacion(mat1);
+     est1.agregarMatriculacion(mat1);
+     
+     em.persist(car1);
+     em.persist(est1);
+     em.persist(mat1);
+     
+//     controller.altaEstudiante(est2, car1);
+//     controller.altaEstudiante(est1, car3);
+//     controller.altaEstudiante(est1, car3);
+     
+     
+       
+//       controller.cargarDatos();
+       
+//        List<Carrera> listE2= controller.getCarrerasConEstudiantes();
+//	     for(int i=0; i< listE2.size(); i++) {
+//	     	System.out.println(listE2.get(i));	
+//	     }
+       
+//      	cargarDatos(controller);
 	     
 //        
-//        em.getTransaction().commit();
-//        em.close();
-//        emf.close();
+        em.getTransaction().commit();
+       em.close();
+        emf.close();
     	
     	
     	
@@ -124,4 +156,7 @@ public class Demo {
 //    	}
     }
     
+    
 }
+
+
