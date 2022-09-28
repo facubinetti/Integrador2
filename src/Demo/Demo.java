@@ -37,8 +37,8 @@ public class Demo {
     public static void main(String[] args) {
 
        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Example");
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
+       EntityManager em = emf.createEntityManager();
+       em.getTransaction().begin();
 //
 
 ////
@@ -90,30 +90,30 @@ public class Demo {
 //	     	
 //	     }
         
-//      Controller controller = new Controller();
-       
-     Estudiante est1 = new Estudiante(1,1,"Juan","Perez",26,'M',"Tres Arroyos");
-     Estudiante est2 = new Estudiante(2,2,"Manuela","Ruiz",26,'F',"Tres Arroyos");
-     
-     Carrera car1 = new Carrera("TUDAI", 3);
-     Carrera car2 = new Carrera("Ingenieria en Sistemas", 5);
-     Carrera car3 = new Carrera("Contador", 6); // sin matri
-     
-     Matriculacion mat1 = new Matriculacion(est1,car1,false,2022);
-     car1.agregarMatriculacion(mat1);
-     est1.agregarMatriculacion(mat1);
-     
-     em.persist(car1);
-     em.persist(est1);
-     em.persist(mat1);
+      
+//       
+//     Estudiante est1 = new Estudiante(1,1,"Juan","Perez",26,'M',"Tres Arroyos");
+//     Estudiante est2 = new Estudiante(2,2,"Manuela","Ruiz",26,'F',"Tres Arroyos");
+//     
+//     Carrera car1 = new Carrera("TUDAI", 3);
+//     Carrera car2 = new Carrera("Ingenieria en Sistemas", 5);
+//     Carrera car3 = new Carrera("Contador", 6); // sin matri
+//     
+//     Matriculacion mat1 = new Matriculacion(est1,car1,false,2022);
+//     car1.agregarMatriculacion(mat1);
+//     est1.agregarMatriculacion(mat1);
+//     
+//     em.persist(car1);
+//     em.persist(est1);
+//     em.persist(mat1);
      
 //     controller.altaEstudiante(est2, car1);
 //     controller.altaEstudiante(est1, car3);
 //     controller.altaEstudiante(est1, car3);
      
      
-       
-//       controller.cargarDatos();
+     Controller controller = new Controller();
+     controller.cargarDatos();
        
 //        List<Carrera> listE2= controller.getCarrerasConEstudiantes();
 //	     for(int i=0; i< listE2.size(); i++) {
@@ -123,9 +123,9 @@ public class Demo {
 //      	cargarDatos(controller);
 	     
 //        
-        em.getTransaction().commit();
+       em.getTransaction().commit();
        em.close();
-        emf.close();
+       emf.close();
     	
     	
     	

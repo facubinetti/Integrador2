@@ -87,10 +87,10 @@ public class Controller {
 	public boolean altaEstudiante(Estudiante e, Carrera c) {
 		if(e != null && c != null) {
 			Matriculacion mat = new Matriculacion(e,c,false,2020);
-			sm.insertarMatriculacion(mat);
 			e.agregarMatriculacion(mat);
 			c.agregarMatriculacion(mat);
 			if(this.actualizarCarrera(c) && this.insertarEstudiante(e)) {
+				sm.insertarMatriculacion(mat);
 				return true;
 			}
 		}
