@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
@@ -86,7 +87,11 @@ public class Controller {
 	
 	public boolean altaEstudiante(Estudiante e, Carrera c) {
 		if(e != null && c != null) {
-			Matriculacion mat = new Matriculacion(e,c,false,2020);
+			Random random = new Random();
+			//40% chance of true
+			boolean chances40true = (random.nextInt(5) < 2) ? true : false;
+			int anioRandom= new Random().nextInt(2022 - 2010 + 1) + 2010;
+			Matriculacion mat = new Matriculacion(e,c,chances40true,anioRandom);
 			e.agregarMatriculacion(mat);
 			c.agregarMatriculacion(mat);
 			if(this.actualizarCarrera(c) && this.insertarEstudiante(e)) {
@@ -127,7 +132,7 @@ public class Controller {
 		try {
 			@SuppressWarnings("deprecation")
 			CSVParser parser = CSVFormat.DEFAULT.withHeader().parse(new FileReader("./src/assets/estudiantes100.csv"));
-			System.out.println("Estoy cargando los productos...");
+			System.out.println("Estoy cargando los estudiantes...");
 			for(CSVRecord row: parser) {
 				Estudiante tmp = new Estudiante(parseInt(row.get("dni")),parseInt(row.get("nrolibreta")),row.get("nombre"),row.get("apellido"),parseInt(row.get("edad")),row.get("genero").charAt(0),row.get("ciudad"));
 				altaEstudiante(tmp, carreras.get((int) (Math.random()*19+1)));
@@ -148,7 +153,7 @@ public class Controller {
 		try {
 			@SuppressWarnings("deprecation")
 			CSVParser parser = CSVFormat.DEFAULT.withHeader().parse(new FileReader("./src/assets/carreras20.csv"));
-			System.out.println("Estoy cargando los productos...");
+			System.out.println("Estoy cargando las carreras...");
 			for(CSVRecord row: parser) {
 				Carrera tmp = new Carrera(row.get("nombre"),parseInt(row.get("duracion")));
 				car.add(tmp);

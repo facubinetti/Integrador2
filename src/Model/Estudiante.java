@@ -10,33 +10,33 @@ public class Estudiante {
 
     @Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-    int id_estudiante;
+    private int id_estudiante;
 
     @Column(name = "dni")
 	@GeneratedValue
-    int dni;
+    private int dni;
 
    @Column
    @GeneratedValue
-    int nrolibreta;
+    private int nrolibreta;
 
     @Column(name = "nombre",nullable = false)
-    String nombre;
+    private String nombre;
 
     @Column(name = "apellido",nullable = false)
-    String apellido;
+    private String apellido;
 
     @Column(name = "edad",nullable = false)
-    int edad;
+    private int edad;
 
     @Column(name = "genero",nullable = false)
-    char genero;
+    private char genero;
 
     @Column(name = "ciudad",nullable = false)
-    String ciudad;
+    private String ciudad;
 
     @OneToMany (mappedBy = "estudiante",fetch = FetchType.LAZY)
-    List<Matriculacion> matriculaciones;
+    private List<Matriculacion> matriculaciones;
 
     public Estudiante( int dni, int lu,String nombre, String apellido, int edad ,char genero, String ciudad) {
 		this.nombre = nombre;
