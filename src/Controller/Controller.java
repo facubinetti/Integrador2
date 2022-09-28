@@ -22,15 +22,16 @@ public class Controller {
 
 	private ServicioCarrera sc;
 	private ServicioEstudiante se;
+	private ServicioMatriculacion sm;
 	
 	
 	public Controller() {
 		FactoryEntityManager factoryEntity = new FactoryEntityManager();
 		this.sc = new ServicioCarreraImpl(factoryEntity);
 		this.se = new ServicioEstudianteImpl(factoryEntity);
+		this.sm = new ServicioMatriculacionImpl(factoryEntity);
 	};
-	
-	
+		
 	public boolean insertarEstudiante(Estudiante e) {
 		return this.se.insertarEstudiante(e);
 	}
@@ -39,6 +40,16 @@ public class Controller {
 	};
 	public boolean actualizarEstudiante(Estudiante e) {
 		return this.se.actualizarEstudiante(e);
+	};
+	
+	public boolean insertarMatriculacion(Matriculacion m) {
+		return this.sm.insertarMatriculacion(m);
+	}
+	public boolean eliminarMatriculacion(int id) {
+		return this.sm.eliminarMatriculacion(id);
+	};
+	public boolean actualizarMatriculacion(Matriculacion m) {
+		return this.sm.actualizarMatriculacion(m);
 	};
 	
 	public boolean insertarCarrera(Carrera c) {
@@ -76,6 +87,7 @@ public class Controller {
 	public boolean altaEstudiante(Estudiante e, Carrera c) {
 		if(e != null && c != null) {
 			Matriculacion mat = new Matriculacion(e,c,false,2020);
+			sm.insertarMatriculacion(mat);
 			e.agregarMatriculacion(mat);
 			c.agregarMatriculacion(mat);
 			if(this.actualizarCarrera(c) && this.insertarEstudiante(e)) {
@@ -153,8 +165,5 @@ public class Controller {
 		}
 		return car;
 	}
-	
-	
 
-	
 }
