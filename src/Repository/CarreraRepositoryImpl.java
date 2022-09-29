@@ -66,11 +66,11 @@ public class CarreraRepositoryImpl implements CarreraRepository{
 
 	@Override
 	public List<Carrera> getCarrerasConEstudiantes() {
-		String get="SELECT DISTINCT c "
-				+ "FROM Carrera c LEFT OUTER JOIN c.matriculaciones m "
-				+ "WHERE SIZE(c.matriculaciones) > 0 "
-			//	+ "ORDER BY SIZE(c.matriculaciones), c.id_carrera, c.nombre, c.duracion DESC "; //No se puede ordenar por SIZE(). Ordenar en java???
-		;
+		String get="SELECT c FROM Carrera c "
+				+ "LEFT OUTER JOIN Matriculacion m ON c.id_carrera = m.carrera "
+				+ "GROUP BY c.id_carrera,c.nombre ,c.duracion "
+				+ "HAVING COUNT(c.id_carrera) > 0 "
+				+ "ORDER BY COUNT(c.id_carrera) DESC ";
 		try {
 			em.getTransaction().begin();
 			TypedQuery<Carrera> typedQuery = this.em.createQuery(get, Carrera.class);
