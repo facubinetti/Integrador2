@@ -1,24 +1,45 @@
 package Factory;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 
+/**
+ * 
+ * @author Grupo1
+ * @version Unique Version
+ * @category Factory
+ * 
+ */
 public class FactoryEntityManager {
 	
+	/**
+	 * Administrador de la fabrica de entidades
+	 */
 	EntityManagerFactory emf = Persistence.createEntityManagerFactory("Example");
 	
-	
+	/**
+	 * Entidad
+	 */
 	@PersistenceContext(unitName="rd")
     EntityManager em = emf.createEntityManager();
     
+	/**
+	 * Constructor
+	 */
     public FactoryEntityManager(){};
     
+    /**
+     * Obtener el administrador de entidades
+     * @return em
+     */
     public EntityManager getEntityManger() {
     	return this.em;
     }
 
+    /**
+     * Apagar la fabrica
+     */
 	public void apagar() {
 		em.close();
 		emf.close();
