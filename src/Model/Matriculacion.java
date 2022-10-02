@@ -35,12 +35,12 @@ public class Matriculacion {
     @ManyToOne
     @JoinColumn(name = "id_carrera") //FK
     private Carrera carrera;
-
+    
     /**
-     * estado de graduacion
+     * anio de graduacion
      */
-    @Column(name="graduado")
-    private boolean graduado;
+    @Column(name="anio_graduado")
+    private int anioGraduado;
     
 //    @Column(name = "local_date", columnDefinition = "DATE")
 //    private LocalDate inscripcion;
@@ -61,10 +61,10 @@ public class Matriculacion {
 	 * @param graduado estado de graduacion 
 	 * @param inscripcion anio de inscripcion 
 	 */
-	public Matriculacion(Estudiante estudiante, Carrera carrera, boolean graduado, int inscripcion) {
+	public Matriculacion(Estudiante estudiante, Carrera carrera, int graduado, int inscripcion) {
 		this.estudiante = estudiante;
 		this.carrera = carrera;
-		this.graduado = graduado;
+		this.anioGraduado = graduado;
 		this.anioInscripcion = inscripcion;
 	}
 
@@ -112,16 +112,16 @@ public class Matriculacion {
 	 * Obtener estado de graduacion
 	 * @return graduado
 	 */
-	public boolean isGraduado() {
-		return graduado;
+	public int getAnioGraduado() {
+		return anioGraduado;
 	}
 
 	/**
 	 * Cambiar estado de graduacion 
 	 * @param graduado nuevo estado de graduacion
 	 */
-	public void setGraduado(boolean graduado) {
-		this.graduado = graduado;
+	public void setGraduado(int graduado) {
+		this.anioGraduado = graduado;
 	}
 
 	/**
@@ -155,7 +155,7 @@ public class Matriculacion {
 	@Override
 	public String toString() {
 		return "Matriculacion [idcurso=" + idMatricula + ", estudiante=" + estudiante + ", carrera=" + carrera
-				+ ", graduado=" + graduado  + "]";
+				+ ", graduado=" + anioGraduado  + "]";
 	}
 
 

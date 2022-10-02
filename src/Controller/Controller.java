@@ -84,14 +84,27 @@ public class Controller {
 		return this.sc.getCarrerasConEstudiantes();
 	};
 	
+	public int generateRandomInt(int min, int max){
+        return (int) Math.floor((Math.random() * (max+1 -min)) +min);
+    }
 	
 	public boolean altaEstudiante(Estudiante e, Carrera c) {
 		if(e != null && c != null) {
 			Random random = new Random();
 			//40% chance of true
 			boolean chances40true = (random.nextInt(5) < 2) ? true : false;
-			int anioRandom= new Random().nextInt(2022 - 2010 + 1) + 2010;
-			Matriculacion mat = new Matriculacion(e,c,chances40true,anioRandom);
+			int anioRandomIngreso=0;//null
+			int anioRandomEgreso = 0; 	
+			int duracionTemp= c.getDuracion();
+
+			if(chances40true) {
+				anioRandomIngreso= generateRandomInt(2010, 2022-duracionTemp);
+				anioRandomEgreso= generateRandomInt(2022-duracionTemp, 2022);
+			}else {
+				anioRandomIngreso=generateRandomInt(2010, 2022);
+			}
+				
+			Matriculacion mat = new Matriculacion(e,c,anioRandomEgreso,anioRandomIngreso);
 			e.agregarMatriculacion(mat);
 			c.agregarMatriculacion(mat);
 			if(this.actualizarCarrera(c) && this.insertarEstudiante(e)) {

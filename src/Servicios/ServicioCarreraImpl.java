@@ -48,7 +48,9 @@ public class ServicioCarreraImpl implements ServicioCarrera{
 	}
 	
 	public  List<CarreraDTO> getReporteCarreras() {
-		return cr.getReporteCarreras();
+		List<CarreraDTO> tmpInscriptos = cr.getReporteCarrerasInscriptos();
+		tmpInscriptos.addAll(cr.getReporteCarrerasEgresados());
+		return tmpInscriptos;
 	}
 	
 

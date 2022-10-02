@@ -23,17 +23,22 @@ public class CarreraDTO{
 	/**
 	 * Cantidad de Inscriptos en la carrera
 	 */
-	private long cantInscriptos;
+	private int cantInscriptos;
 	
 	/**
 	 * Cantidad de Egresados de la carrera
 	 */
-	private long cantEgresados;
+	private int cantEgresados;
 	
 	/**
 	 * Anio de inscripcion de la carrera
 	 */
-	private Long anioInscripcion;
+	private int anioInscripcion;
+	
+	/**
+	 * Anio de egreso de la carrera
+	 */
+	private int anioEgreso;
 	
 	
 	/**
@@ -43,13 +48,14 @@ public class CarreraDTO{
 	}
 		
 
-	public CarreraDTO(int idCarrera, String nombreCarrera, long cantInscriptos, long cantEgresados, Long anioInscripcion) {
+	public CarreraDTO(int idCarrera, String nombreCarrera, int cantInscriptos, int cantEgresados, int anioInscripcion, int anioEgreso) {
 		super();
 		this.idCarrera = idCarrera;
 		this.nombreCarrera = nombreCarrera;
 		this.cantInscriptos = cantInscriptos;
 		this.cantEgresados = cantEgresados;
 		this.anioInscripcion= anioInscripcion;
+		this.anioInscripcion= anioEgreso;
 	}
 
 	
@@ -90,7 +96,7 @@ public class CarreraDTO{
 	 * Obtener cantidad de inscriptos
 	 * @return cantInscriptos 
 	 */
-	public long getCantInscriptos() {
+	public int getCantInscriptos() {
 		return cantInscriptos;
 	}
 	
@@ -106,7 +112,7 @@ public class CarreraDTO{
 	 * Obtener cantidad de egresados
 	 * @return cantEgresados
 	 */
-	public long getCantEgresados() {
+	public int getCantEgresados() {
 		return cantEgresados;
 	}
 	
@@ -122,7 +128,7 @@ public class CarreraDTO{
 	 * Obtener el anio de inscripcion inscripcion
 	 * @return anioInscripcion
 	 */
-	public long getInscripcion() {
+	public int getInscripcion() {
 		return anioInscripcion;
 	}
 
@@ -130,9 +136,21 @@ public class CarreraDTO{
 	 * Cambiar el anio de inscripcion
 	 * @param inscripcion nuevo da
 	 */
-	public void setInscripcion(Long inscripcion) {
+	public void setInscripcion(int inscripcion) {
 		this.anioInscripcion = inscripcion;
 	}
+	
+
+
+	public int getAnioEgreso() {
+		return anioEgreso;
+	}
+
+
+	public void setAnioEgreso(int anioEgreso) {
+		this.anioEgreso = anioEgreso;
+	}
+
 
 	/**
 	 * Convierte el objeto a string

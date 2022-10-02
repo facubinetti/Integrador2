@@ -116,18 +116,48 @@ public class CarreraRepositoryImpl implements CarreraRepository{
 		return null;
 	}
 	
-	public List<CarreraDTO>  getReporteCarreras() {
+	public List<CarreraDTO>  getReporteCarrerasInscriptos() {
 		
-		String get= "SELECT new DTO.CarreraDTO (c.id_carrera AS idCarrera, c.nombre AS nombreCarrera, COUNT(e.id_estudiante) AS cantInscriptos, "
-				+ "COUNT(CASE WHEN (m.graduado = :trueValue) THEN 1 END) AS cantEgresados, CAST(m.anioInscripcion AS long) AS anioInscripcion) "
+		String getInscriptos= "SELECT new DTO.CarreraDTO (c.id_carrera AS idCarrera, c.nombre AS nombreCarrera, "
+				+ "CAST(COUNT(e.id_estudiante) AS int) AS cantInscriptos, 0 AS cantEgresados, "
+				+ "m.anioInscripcion AS anioInscripcion, "
+				+ "m.anioGraduado AS anioGraduado) "
 				+ "from Carrera c "
 				+ "left outer join Matriculacion m on c.id_carrera = m.carrera "
 				+ "left outer join Estudiante e on m.estudiante = e.id_estudiante "
 				+ "group by m.anioInscripcion,c.id_carrera, c.nombre "
-				+ "ORDER BY c.nombre, m.anioInscripcion, c.id_carrera, cantInscriptos, cantEgresados ASC";
+				+ "ORDER BY c.nombre, anioInscripcion, c.id_carrera, cantInscriptos, cantEgresados ASC ";
+		
 		try { 
 			em.getTransaction().begin();
-			List<CarreraDTO> listaDTO = this.em.createQuery(get, CarreraDTO.class).setParameter("trueValue", true).getResultList();
+			List<CarreraDTO> listaDTO = this.em.createQuery(getInscriptos, CarreraDTO.class).getResultList();
+			return listaDTO;
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+	        em.getTransaction().commit();
+		}
+		return null;
+	}
+	
+	public List<CarreraDTO>  getReporteCarrerasEgresados() {
+		
+		String getInscriptos= "SELECT new DTO.CarreraDTO (c.id_carrera AS idCarrera, c.nombre AS nombreCarrera, "
+				+ "0 AS cantInscriptos, "
+				+ "CAST(COUNT(e.id_estudiante) AS int) AS cantEgresados, "
+				+ "m.anioInscripcion AS anioInscripcion, "
+				+ "m.anioGraduado AS anioGraduado"
+				+ ") "
+				+ "from Carrera c "
+				+ "left outer join Matriculacion m on c.id_carrera = m.carrera "
+				+ "left outer join Estudiante e on m.estudiante = e.id_estudiante "
+				+ "group by m.anioGraduado,c.id_carrera, c.nombre "
+				+ "ORDER BY c.nombre, anioGraduado, c.id_carrera, cantEgresados ASC ";
+		
+		try { 
+			em.getTransaction().begin();
+			List<CarreraDTO> listaDTO = this.em.createQuery(getInscriptos, CarreraDTO.class).getResultList();
 			return listaDTO;
 		}
 		catch(Exception e) {

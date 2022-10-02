@@ -56,7 +56,7 @@ public class Demo {
      //recuperar todos los estudiantes, en base a su género
           
      //recuperar las carreras con estudiantes inscriptos, y ordenar por cantidad de inscriptos
-     List<Carrera> listCarrerasConInscriptos= controller.getCarrerasConEstudiantes();
+     List<CarreraDTO> listCarrerasConInscriptos= controller.getReporteCarreras();
      for(int i=0; i< listCarrerasConInscriptos.size(); i++) {
 	     	System.out.println(listCarrerasConInscriptos.get(i));	
 	     }
