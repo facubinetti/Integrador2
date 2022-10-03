@@ -9,20 +9,14 @@ import org.hibernate.Hibernate;
 
 import Controller.Controller;
 import DTO.CarreraDTO;
-import Model.Carrera;
-import Model.Estudiante;
 
-import Model.Carrera;
-import Model.Estudiante;
-import Model.Matriculacion;
-import Repository.CarreraRepositoryImpl;
-import Repository.EstudianteRepositoryImpl;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -42,7 +36,7 @@ public class Demo {
 
         
      Controller controller = new Controller();
-    // controller.cargarDatos();
+     controller.cargarDatos();
      
      //dar de alta un estudiante
 //     Estudiante e= new Estudiante();
@@ -56,8 +50,13 @@ public class Demo {
      //recuperar un estudiante, en base a su número de libreta universitaria
      
      //recuperar todos los estudiantes, en base a su género
-          
-     //recuperar las carreras con estudiantes inscriptos, y ordenar por cantidad de inscriptos     
+
+     //recuperar las carreras con estudiantes inscriptos, y ordenar por cantidad de inscriptos
+     List<CarreraDTO> listCarrerasConInscriptos= controller.getReporteCarreras();
+     
+     for(int i=0; i< listCarrerasConInscriptos.size(); i++) {
+	     	System.out.println(listCarrerasConInscriptos.get(i));	
+	     }	     
      
      //recuperar los estudiantes de una determinada carrera, filtrado por ciudad de residencia
      

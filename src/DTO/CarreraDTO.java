@@ -34,7 +34,7 @@ public class CarreraDTO{
 	 * Anio de inscripcion de la carrera
 	 */
 	private int anio;
-	
+
 	
 	/**
 	 * Constructor
@@ -44,12 +44,14 @@ public class CarreraDTO{
 		
 
 	public CarreraDTO(String nombreCarrera, int idCarrera, int anio, int cantInscriptos, int cantEgresados) {
+
 		super();
 		this.idCarrera = idCarrera;
 		this.nombreCarrera = nombreCarrera;
 		this.anio= anio;
 		this.cantInscriptos = cantInscriptos;
 		this.cantEgresados = cantEgresados;
+		this.anio= anio;
 
 	}
 
@@ -136,6 +138,7 @@ public class CarreraDTO{
 	}
 
 
+
 	/**
 	 * Convierte el objeto a string
 	 * @return stringCarrera
@@ -145,6 +148,17 @@ public class CarreraDTO{
 		return "CarreraDTO [idCarrera=" + idCarrera + ", nombreCarrera=" + nombreCarrera + ", cantInscriptos="
 				+ cantInscriptos + ", cantEgresados=" + cantEgresados + ", anio=" + anio +
 				"]";
+
+	}
+
+
+	public void sumarInscripto() {
+		this.cantInscriptos++;
+	}
+	
+	public void sumarEgresado() {
+		this.cantEgresados++;
+
 	}
 	
 }
