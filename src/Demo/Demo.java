@@ -9,7 +9,8 @@ import org.hibernate.Hibernate;
 
 import Controller.Controller;
 import DTO.CarreraDTO;
-
+import Model.Carrera;
+import Model.Estudiante;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -28,65 +29,80 @@ import static java.lang.Integer.parseInt;
 
 public class Demo {
 
-    public static void main(String[] args) {
+	public static void main(String[] args) {
 
-       EntityManagerFactory emf = Persistence.createEntityManagerFactory("Example");
-       EntityManager em = emf.createEntityManager();
-       em.getTransaction().begin();
-
-        
-     Controller controller = new Controller();
-     //controller.cargarDatos();
-
-     
-     //dar de alta un estudiante
-//     Estudiante e= new Estudiante();
-//     Carrera c= controller.getCarrera(0);
-//     controller.altaEstudiante(null, null);
-     
-     //matricular un estudiante en una carrera
-     
-     //recuperar todos los estudiantes, y especificar algún criterio de ordenamiento simple
-     
-     //recuperar un estudiante, en base a su número de libreta universitaria
-     
-     //recuperar todos los estudiantes, en base a su género
-
-     //recuperar las carreras con estudiantes inscriptos, y ordenar por cantidad de inscriptos
-//     List<CarreraDTO> listCarrerasConInscriptos= controller.getReporteCarreras();
-
-//     for(int i=0; i< listCarrerasConInscriptos.size(); i++) {
-//	     	System.out.println(listCarrerasConInscriptos.get(i));	
-//	     }	     
-     
-     //recuperar los estudiantes de una determinada carrera, filtrado por ciudad de residencia
-     
-     
-     
-   List<CarreraDTO> reporteCarreras= controller.getReporteCarreras();
-   System.out.println("tamanio" + reporteCarreras.size());
-   for(int i=0; i< reporteCarreras.size(); i++) {
-	     	System.out.println(reporteCarreras.get(i));	
-	     }
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("Example");
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
    
-//   List<CarreraDTO> listCarrerasConInscriptos= controller.getReporteCarrerasInscriptos();
-//   for(int i=0; i< listCarrerasConInscriptos.size(); i++) {
-//	     	System.out.println(listCarrerasConInscriptos.get(i));	
+		Controller controller = new Controller();
+		
+		/**
+		 * Crear la base de datos Derby y cargarla con datos
+		 */
+//		controller.cargarDatos();
+     
+		/**
+		 * dar de alta un estudiante y matricular un estudiante en una carrera
+		 */
+//		 Estudiante e= new Estudiante(39290709,222333, "Pedro", "Perez", 30, 'm', "Balcarce" );
+//         Carrera c= controller.getCarrera(4);
+//         System.out.println("El alta del estudiante y su matricuacion fue: "+controller.altaEstudiante(e, c));
+
+		/**
+		 * recuperar todos los estudiantes, y especificar algún criterio de ordenamiento simple (Apellido y nombre)
+		 */
+//		List<Estudiante> estudiantesOrdenados = controller.getEstudianteOrdenado();
+//		for(int i=0; i<estudiantesOrdenados.size(); i++) {
+//			System.out.println(estudiantesOrdenados.get(i));
+//		}
+     
+		/**
+		 * recuperar un estudiante, en base a su número de libreta universitaria
+		 */
+		//System.out.println(controller.getEstudianteLibreta(222333));
+     
+		/**
+		 * recuperar todos los estudiantes, en base a su género
+		 */
+//		List<Estudiante> estudiantesPorGenero = controller.getEstudiantesPorGenero('F');
+//		for(int i=0; i<estudiantesPorGenero.size(); i++) {
+//			System.out.println(estudiantesPorGenero.get(i));
+//		}
+
+		/**
+		 * recuperar las carreras con estudiantes inscriptos, y ordenar por cantidad de inscriptos
+		 */
+//		List<Carrera> listCarrerasConInscriptos= controller.getCarrerasConEstudiantes();
+//		for(int i=0; i< listCarrerasConInscriptos.size(); i++) {
+//			System.out.println(listCarrerasConInscriptos.get(i));	
+//		}	     
+     
+		/**
+		 * recuperar los estudiantes de una determinada carrera, filtrado por ciudad de residencia
+		 */
+//		List<Estudiante> listEstudiantesPorCarreraYCiudad= controller.getEstudiantePorCiudad("Account Representative III", "Balcarce");
+//	 	for(int i=0; i< listEstudiantesPorCarreraYCiudad.size(); i++) {
+//	     	System.out.println(listEstudiantesPorCarreraYCiudad.get(i));	
 //	     }
-   
-//   List<CarreraDTO> listCarrerasConEgresados= controller.getReporteCarrerasEgresados();
-//   for(int i=0; i< listCarrerasConEgresados.size(); i++) {
-//	     	System.out.println(listCarrerasConEgresados.get(i));	
-//	     }
-        
-       em.getTransaction().commit();
-       em.close();
-       emf.close();
-    	
-   
+     
+	   /**
+	    * Generar un reporte de las carreras, que para cada carrera incluya información de los
+		inscriptos y egresados por año. Se deben ordenar las carreras alfabéticamente, y presentar
+		los años de manera cronológica. 
+	    */
+//	 	List<CarreraDTO> reporteCarreras= controller.getReporteCarreras();
+//	 	System.out.println("tamanio" + reporteCarreras.size());
+//	 	for(int i=0; i< reporteCarreras.size(); i++) {
+//		     System.out.println(reporteCarreras.get(i));	
+//	 	}
+ 
+	 	em.getTransaction().commit();
+	 	em.close();
+	 	emf.close();
     }
-    
-    
+	
+ 
 }
 
 
