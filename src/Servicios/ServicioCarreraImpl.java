@@ -159,43 +159,55 @@ public class ServicioCarreraImpl implements ServicioCarrera{
 	// -------------------------------------------------------------------------------------
 
 	public  List<CarreraDTO> getReporteCarreras() {
-		List<Carrera> carreras = cr.getCarrerasConEstudiantes();
+		
+		List<Carrera> carreras = cr.getCarrerasOrdenadoNombre();
 		List<CarreraDTO> reporte = new ArrayList<>();
 		
-		int cantTotal = 0;
 		
-		for(Carrera c: carreras){
+		int cantCarreras = carreras.size();
+		int cantMatri = 0;
+		int cantEgresados = 0;
+		
+		for(Carrera c: carreras) {
+			
 			List<Matriculacion> matriculaciones = c.getMatriculaciones();
 			List<CarreraDTO> temporal = new ArrayList<>();
+			List<Integer> años = new ArrayList<>(); 
+			cantMatri += matriculaciones.size();
+			
 			for(Matriculacion m: matriculaciones) {
+				
 				int añoInscripcion = m.getInscripcion();
 				int añoEgresado = m.getAnioGraduado();
-				boolean sumoInscripto = false;
-				boolean sumoEgresado = false;
-				for(CarreraDTO cdto: temporal) {
-					if(sumoInscripto==false && añoInscripcion==cdto.getAnio()) {
-						cdto.sumarInscripto();
-						cantTotal++;
-						sumoInscripto=true;
+				
+				
+				if(años.contains(añoInscripcion)) {
+					temporal.get(años.indexOf(añoInscripcion)).sumarInscripto();
+					if(añoEgresado!=0) {
+						if(años.contains(añoEgresado)) {
+							cantEgresados++;
+							temporal.get(años.indexOf(añoEgresado)).sumarEgresado();
+						}else {
+							CarreraDTO nuevo = new CarreraDTO(c.getNombre(),c.getId_carrera(),m.getAnioGraduado(),0,1);
+							cantEgresados++;
+							temporal.add(nuevo);
+							años.add(m.getAnioGraduado());
+						}
 					}
-					if(sumoEgresado==false &&añoEgresado==cdto.getAnio()) {
-						cdto.sumarEgresado();
-						cantTotal++;
-						sumoEgresado=true;
-					}
-				}
-				if(sumoInscripto==false) {
-					if(m.getAnioGraduado()!=0 && sumoEgresado==false) {
-						CarreraDTO nuevo = new CarreraDTO(c.getNombre(),c.getId_carrera(),m.getAnioGraduado(),0,1);
-						CarreraDTO nuevo2 = new CarreraDTO(c.getNombre(),c.getId_carrera(),m.getInscripcion(),1,0);
-						cantTotal++;
-						cantTotal++;
-						temporal.add(nuevo);
-						temporal.add(nuevo2);
-					} else {
-						CarreraDTO nuevo = new CarreraDTO(c.getNombre(),c.getId_carrera(),m.getInscripcion(),1,0);
-						cantTotal++;
-						temporal.add(nuevo);
+				} else {
+					CarreraDTO nuevo = new CarreraDTO(c.getNombre(),c.getId_carrera(),m.getInscripcion(),1,0);
+					temporal.add(nuevo);
+					años.add(m.getInscripcion());
+					if(añoEgresado!=0) {
+						if(años.contains(añoEgresado)) {
+							cantEgresados++;
+							temporal.get(años.indexOf(añoEgresado)).sumarEgresado();
+						} else {
+							CarreraDTO nuevo2 = new CarreraDTO(c.getNombre(),c.getId_carrera(),m.getAnioGraduado(),0,1);
+							cantEgresados++;
+							temporal.add(nuevo2);
+							años.add(m.getAnioGraduado());
+						}
 					}
 				}
 			}
@@ -203,10 +215,12 @@ public class ServicioCarreraImpl implements ServicioCarrera{
 			temporal.sort(new ComparadorDTO());
 			reporte.addAll(temporal);
 	}
-		System.out.println(cantTotal);
+		
+		System.out.println("MatriculacionesTotales: "+ cantMatri+", totalCarreras: "+ cantCarreras+", totalEgresados= "+ cantEgresados);
 		return reporte;
+		
+		}
+
+
 	}
-}
-
-
 
