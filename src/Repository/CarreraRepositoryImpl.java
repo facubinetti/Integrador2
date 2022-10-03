@@ -168,27 +168,17 @@ public class CarreraRepositoryImpl implements CarreraRepository{
 		return null;
 	}
 	
-	public List<CarreraDTO> getReporte(){
-		String getInscriptos=" SELECT new DTO.CarreraDTO (c.id_carrera AS idCarrera, c.nombre AS nombreCarrera, 0 AS cantInscriptos, CAST(COUNT(e.id_estudiante) AS int) AS cantEgresados, m.anioInscripcion AS anioInscripcion, m.anioGraduado AS anioGraduado)"
-				+ "FROM Carrera c "
-				+ "left outer join Matriculacion m on c.id_carrera = m.carrera "
-				+ "left outer join Estudiante e on m.estudiante = e.id_estudiante "
-				+ "group by m.anioGraduado,c.id_carrera, c.nombre "
-				+ "ORDER BY c.nombre, anioGraduado, c.id_carrera, cantEgresados ASC "
-				+ "UNION "
-				+ "SELECT new DTO.CarreraDTO (c.id_carrera AS idCarrera, c.nombre AS nombreCarrera, "
-				+ "CAST(COUNT(e.id_estudiante) AS int) AS cantInscriptos, 0 AS cantEgresados, "
-				+ "m.anioInscripcion AS anioInscripcion, "
-				+ "m.anioGraduado AS anioGraduado) "
-				+ "from Carrera c "
-				+ "left outer join Matriculacion m on c.id_carrera = m.carrera "
-				+ "left outer join Estudiante e on m.estudiante = e.id_estudiante "
-				+ "group by m.anioInscripcion,c.id_carrera, c.nombre "
-				+ "ORDER BY c.nombre, anioInscripcion, c.id_carrera, cantInscriptos, cantEgresados ASC ";
-		try { 
+	@Override
+	public List<Carrera> getCarrerasOrdenadoNombre() {
+		String get="SELECT c FROM Carrera c "
+				+ "LEFT OUTER JOIN Matriculacion m ON c.id_carrera = m.carrera "
+				+ "GROUP BY c.id_carrera,c.nombre ,c.duracion "
+				+ "HAVING COUNT(c.id_carrera) > 0 "
+				+ "ORDER BY c.nombre ASC ";
+		try {
 			em.getTransaction().begin();
-			List<CarreraDTO> listaDTO = this.em.createQuery(getInscriptos, CarreraDTO.class).getResultList();
-			return listaDTO;
+			TypedQuery<Carrera> typedQuery = this.em.createQuery(get, Carrera.class);
+			return typedQuery.getResultList();
 		}
 		catch(Exception e) {
 			e.printStackTrace();

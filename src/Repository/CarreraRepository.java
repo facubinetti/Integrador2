@@ -12,4 +12,5 @@ public interface CarreraRepository {
 	public Carrera getCarrera(int id);
 	public List<Carrera> getAllCarreras();
 	public List<Carrera> getCarrerasConEstudiantes();
+	public List<Carrera> getCarrerasOrdenadoNombre();
 }
