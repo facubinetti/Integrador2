@@ -96,6 +96,7 @@ public class Controller {
 			int anioRandomIngreso=0;//null
 			int anioRandomEgreso = 0; 	
 			int duracionTemp= c.getDuracion();
+			
 
 			if(chances40true) {
 				anioRandomIngreso= generateRandomInt(2010, 2022-duracionTemp);
@@ -138,6 +139,16 @@ public class Controller {
 	public List<CarreraDTO> getReporteCarreras(){
 		return this.sc.getReporteCarreras();
 	}
+	
+	/////////// prueba ---------------------------------
+	public List<CarreraDTO> getReporteCarrerasInscriptos(){
+		return this.sc.getReporteCarrerasInscriptos();
+	}
+	
+	public List<CarreraDTO> getReporteCarrerasEgresados(){
+		return this.sc.getReporteCarrerasEgresados();
+	}
+	//----------------------------------------------------------------------------------------------
 	
 	
 	public void cargarDatos() {

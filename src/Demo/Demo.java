@@ -9,14 +9,7 @@ import org.hibernate.Hibernate;
 
 import Controller.Controller;
 import DTO.CarreraDTO;
-import Model.Carrera;
-import Model.Estudiante;
 
-import Model.Carrera;
-import Model.Estudiante;
-import Model.Matriculacion;
-import Repository.CarreraRepositoryImpl;
-import Repository.EstudianteRepositoryImpl;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -46,7 +39,9 @@ public class Demo {
 //     controller.cargarDatos();
      
      //dar de alta un estudiante
-     
+//     Estudiante e= new Estudiante();
+//     Carrera c= controller.getCarrera(0);
+//     controller.altaEstudiante(null, null);
      
      //matricular un estudiante en una carrera
      
@@ -55,17 +50,32 @@ public class Demo {
      //recuperar un estudiante, en base a su número de libreta universitaria
      
      //recuperar todos los estudiantes, en base a su género
-          
+
      //recuperar las carreras con estudiantes inscriptos, y ordenar por cantidad de inscriptos
-     List<CarreraDTO> listCarrerasConInscriptos= controller.getReporteCarreras();
-     
-     for(int i=0; i< listCarrerasConInscriptos.size(); i++) {
-	     	System.out.println(listCarrerasConInscriptos.get(i));	
-	     }
-	     
+//     List<CarreraDTO> listCarrerasConInscriptos= controller.getReporteCarreras();
+//     
+//     for(int i=0; i< listCarrerasConInscriptos.size(); i++) {
+//	     	System.out.println(listCarrerasConInscriptos.get(i));	
+//	     }	     
      
      //recuperar los estudiantes de una determinada carrera, filtrado por ciudad de residencia
      
+     
+     
+   List<CarreraDTO> reporteCarreras= controller.getReporteCarreras();
+   for(int i=0; i< reporteCarreras.size(); i++) {
+	     	System.out.println(reporteCarreras.get(i));	
+	     }
+   
+//   List<CarreraDTO> listCarrerasConInscriptos= controller.getReporteCarrerasInscriptos();
+//   for(int i=0; i< listCarrerasConInscriptos.size(); i++) {
+//	     	System.out.println(listCarrerasConInscriptos.get(i));	
+//	     }
+   
+//   List<CarreraDTO> listCarrerasConEgresados= controller.getReporteCarrerasEgresados();
+//   for(int i=0; i< listCarrerasConEgresados.size(); i++) {
+//	     	System.out.println(listCarrerasConEgresados.get(i));	
+//	     }
         
        em.getTransaction().commit();
        em.close();
