@@ -37,16 +37,13 @@ public class Matriculacion {
     private Carrera carrera;
     
     /**
-     * anio de graduacion
+     * anio de graduacion del estudiante
      */
     @Column(name="anio_graduado")
     private int anioGraduado;
     
-//    @Column(name = "local_date", columnDefinition = "DATE")
-//    private LocalDate inscripcion;
-    
     /**
-     * anio de inscripcion del estdiante
+     * anio de inscripcion del estudiante
      */
     @Column(name="anioInscripcion")
     private int anioInscripcion;

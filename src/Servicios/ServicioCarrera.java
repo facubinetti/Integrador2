@@ -14,5 +14,7 @@ public interface ServicioCarrera {
 	public Carrera getCarrera(int id);
 	public List<Carrera> getCarrerasConEstudiantes();
 	public List<CarreraDTO> getReporteCarreras();
+	public List<CarreraDTO> getReporteCarrerasInscriptos();
+	public List<CarreraDTO> getReporteCarrerasEgresados();
 
 }

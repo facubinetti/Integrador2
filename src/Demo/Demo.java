@@ -45,7 +45,9 @@ public class Demo {
     // controller.cargarDatos();
      
      //dar de alta un estudiante
-     
+//     Estudiante e= new Estudiante();
+//     Carrera c= controller.getCarrera(0);
+//     controller.altaEstudiante(null, null);
      
      //matricular un estudiante en una carrera
      
@@ -55,15 +57,26 @@ public class Demo {
      
      //recuperar todos los estudiantes, en base a su género
           
-     //recuperar las carreras con estudiantes inscriptos, y ordenar por cantidad de inscriptos
-     List<CarreraDTO> listCarrerasConInscriptos= controller.getReporteCarreras();
-     for(int i=0; i< listCarrerasConInscriptos.size(); i++) {
-	     	System.out.println(listCarrerasConInscriptos.get(i));	
-	     }
-	     
+     //recuperar las carreras con estudiantes inscriptos, y ordenar por cantidad de inscriptos     
      
      //recuperar los estudiantes de una determinada carrera, filtrado por ciudad de residencia
      
+     
+     
+   List<CarreraDTO> reporteCarreras= controller.getReporteCarreras();
+   for(int i=0; i< reporteCarreras.size(); i++) {
+	     	System.out.println(reporteCarreras.get(i));	
+	     }
+   
+//   List<CarreraDTO> listCarrerasConInscriptos= controller.getReporteCarrerasInscriptos();
+//   for(int i=0; i< listCarrerasConInscriptos.size(); i++) {
+//	     	System.out.println(listCarrerasConInscriptos.get(i));	
+//	     }
+   
+//   List<CarreraDTO> listCarrerasConEgresados= controller.getReporteCarrerasEgresados();
+//   for(int i=0; i< listCarrerasConEgresados.size(); i++) {
+//	     	System.out.println(listCarrerasConEgresados.get(i));	
+//	     }
         
        em.getTransaction().commit();
        em.close();

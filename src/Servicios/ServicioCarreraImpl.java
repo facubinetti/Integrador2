@@ -47,11 +47,91 @@ public class ServicioCarreraImpl implements ServicioCarrera{
 		return cr.getCarrera(id);
 	}
 	
-	public  List<CarreraDTO> getReporteCarreras() {
+	//Facu
+//	@Override
+//	public  List<CarreraDTO> getReporteCarreras() {
+//		List<CarreraDTO> tmpInscriptos = cr.getReporteCarrerasInscriptos();
+//		List<CarreraDTO> tmpEgresados = cr.getReporteCarrerasEgresados();
+//		List<CarreraDTO> salida = new ArrayList<CarreraDTO>();
+//		int idEgresado = tmpInscriptos.get(0).getIdCarrera();
+//		int idInscripto = 0;
+//		boolean anionoexiste;
+//		CarreraDTO dto;
+//
+//		        for(int i=0; i< tmpInscriptos.size(); i++) { 
+//		            idInscripto=tmpInscriptos.get(i).getIdCarrera();
+//		            anionoexiste = false;
+//		                for(int j=0; j< tmpEgresados.size(); j++) { 
+//		                    idEgresado = tmpEgresados.get(j).getIdCarrera();
+//		                    if(tmpInscriptos.get(i).getAnio()== tmpEgresados.get(j).getAnio() && idInscripto == idEgresado) {
+//		                        dto = tmpEgresados.get(j);
+//		                        dto.setCantInscriptos(tmpInscriptos.get(i).getCantInscriptos());
+//		                        salida.add(dto);
+//		                        break;
+//		                    }else if(idInscripto != idEgresado){
+//		                        anionoexiste = true;
+//		                        break;
+//		                    }
+//		                }
+//		            if(anionoexiste){
+//		                dto = tmpInscriptos.get(i);
+//		                salida.add(dto);
+//		            }
+//		        }
+//  
+//		        return salida;
+//	}
+	
+	//Tomi
+//	public  List<CarreraDTO> getReporteCarreras() {
+//
+//		List<CarreraDTO> tmpInscriptos = cr.getReporteCarrerasInscriptos();
+//		List<CarreraDTO> tmpEgresados = cr.getReporteCarrerasEgresados();
+//		List<CarreraDTO> salida = new ArrayList<CarreraDTO>();
+//
+//		 CarreraDTO dto;
+//	        for(int i=0; i< tmpInscriptos.size(); i++) { 
+//	                for(int j=0; j< tmpEgresados.size(); j++) {
+//
+//	                    if(tmpInscriptos.get(i).getIdCarrera() == tmpEgresados.get(j).getIdCarrera() && tmpInscriptos.get(i).getAnio() == tmpEgresados.get(j).getAnio()) {
+//			                //suma los 2, los agrega y elimina el egresados
+//			                dto = tmpEgresados.get(j);
+//			                tmpEgresados.remove(dto);
+//			                dto.setCantInscriptos(tmpInscriptos.get(i).getCantInscriptos());
+//			                salida.add(dto);
+//			                break;
+//			            }else if(tmpInscriptos.get(i).getIdCarrera() > tmpEgresados.get(j).getIdCarrera() || tmpInscriptos.get(i).getAnio() > tmpEgresados.get(j).getAnio()) {
+//			                //suma el egresados menor, lo agrega y lo borra
+//			                dto = tmpEgresados.get(j);
+//			                tmpEgresados.remove(dto);
+//			                salida.add(dto);
+//			                
+//			            }else if(tmpInscriptos.get(i).getIdCarrera() < tmpEgresados.get(j).getIdCarrera() || tmpInscriptos.get(i).getAnio() < tmpEgresados.get(j).getAnio()) {
+//			                break;
+//		
+//			             }
+//	                    
+//	                }
+//			        if(tmpEgresados.size() == 0){
+//			            dto = tmpInscriptos.get(i);
+//			            salida.add(dto);
+//			        }
+//	        }
+//
+//	        return salida;
+//		}
+	
+	// prueba  ------------------------------------------------------------------
+	@Override
+	public  List<CarreraDTO> getReporteCarrerasInscriptos() {
 		List<CarreraDTO> tmpInscriptos = cr.getReporteCarrerasInscriptos();
-		tmpInscriptos.addAll(cr.getReporteCarrerasEgresados());
 		return tmpInscriptos;
 	}
-	
+	@Override
+	public  List<CarreraDTO> getReporteCarrerasEgresados() {
+		List<CarreraDTO> tmpInscriptos = cr.getReporteCarrerasEgresados();
+		return tmpInscriptos;
+	}
+	// -------------------------------------------------------------------------------------
 
 }

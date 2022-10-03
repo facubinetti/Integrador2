@@ -33,12 +33,7 @@ public class CarreraDTO{
 	/**
 	 * Anio de inscripcion de la carrera
 	 */
-	private int anioInscripcion;
-	
-	/**
-	 * Anio de egreso de la carrera
-	 */
-	private int anioEgreso;
+	private int anio;
 	
 	
 	/**
@@ -48,14 +43,14 @@ public class CarreraDTO{
 	}
 		
 
-	public CarreraDTO(int idCarrera, String nombreCarrera, int cantInscriptos, int cantEgresados, int anioInscripcion, int anioEgreso) {
+	public CarreraDTO(String nombreCarrera, int idCarrera, int anio, int cantInscriptos, int cantEgresados) {
 		super();
 		this.idCarrera = idCarrera;
 		this.nombreCarrera = nombreCarrera;
+		this.anio= anio;
 		this.cantInscriptos = cantInscriptos;
 		this.cantEgresados = cantEgresados;
-		this.anioInscripcion= anioInscripcion;
-		this.anioInscripcion= anioEgreso;
+
 	}
 
 	
@@ -128,27 +123,16 @@ public class CarreraDTO{
 	 * Obtener el anio de inscripcion inscripcion
 	 * @return anioInscripcion
 	 */
-	public int getInscripcion() {
-		return anioInscripcion;
+	public int getAnio() {
+		return anio;
 	}
 
 	/**
 	 * Cambiar el anio de inscripcion
 	 * @param inscripcion nuevo da
 	 */
-	public void setInscripcion(int inscripcion) {
-		this.anioInscripcion = inscripcion;
-	}
-	
-
-
-	public int getAnioEgreso() {
-		return anioEgreso;
-	}
-
-
-	public void setAnioEgreso(int anioEgreso) {
-		this.anioEgreso = anioEgreso;
+	public void setAnio(int anio) {
+		this.anio = anio;
 	}
 
 
@@ -159,7 +143,8 @@ public class CarreraDTO{
 	@Override
 	public String toString() {
 		return "CarreraDTO [idCarrera=" + idCarrera + ", nombreCarrera=" + nombreCarrera + ", cantInscriptos="
-				+ cantInscriptos + ", cantEgresados=" + cantEgresados + ", anioInscripcion=" + anioInscripcion + "]";
+				+ cantInscriptos + ", cantEgresados=" + cantEgresados + ", anio=" + anio +
+				"]";
 	}
 	
 }
