@@ -23,6 +23,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -42,7 +43,7 @@ public class Demo {
 
         
      Controller controller = new Controller();
-    // controller.cargarDatos();
+//     controller.cargarDatos();
      
      //dar de alta un estudiante
      
@@ -57,6 +58,7 @@ public class Demo {
           
      //recuperar las carreras con estudiantes inscriptos, y ordenar por cantidad de inscriptos
      List<CarreraDTO> listCarrerasConInscriptos= controller.getReporteCarreras();
+     
      for(int i=0; i< listCarrerasConInscriptos.size(); i++) {
 	     	System.out.println(listCarrerasConInscriptos.get(i));	
 	     }

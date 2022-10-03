@@ -59,6 +59,16 @@ public class Carrera {
 	 */
 	public Carrera() {
 	}
+	
+	public int cantMatriculaciones() {
+		return this.matriculaciones.size();
+	}
+	
+	
+	public List<Matriculacion> getMatriculaciones(){
+		return this.matriculaciones;
+	}
+	
 
 	/**
 	 * Oobetener nombre de la carrera
