@@ -36,11 +36,8 @@ public class Demo {
 
         
      Controller controller = new Controller();
-<<<<<<< HEAD
      //controller.cargarDatos();
-=======
-//     controller.cargarDatos();
->>>>>>> 80ecd33cb311f4fedf4651924420cce907685696
+
      
      //dar de alta un estudiante
 //     Estudiante e= new Estudiante();
@@ -57,10 +54,7 @@ public class Demo {
 
      //recuperar las carreras con estudiantes inscriptos, y ordenar por cantidad de inscriptos
 //     List<CarreraDTO> listCarrerasConInscriptos= controller.getReporteCarreras();
-<<<<<<< HEAD
-=======
-//     
->>>>>>> 80ecd33cb311f4fedf4651924420cce907685696
+
 //     for(int i=0; i< listCarrerasConInscriptos.size(); i++) {
 //	     	System.out.println(listCarrerasConInscriptos.get(i));	
 //	     }	     
