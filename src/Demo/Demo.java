@@ -36,7 +36,7 @@ public class Demo {
 
         
      Controller controller = new Controller();
-     controller.cargarDatos();
+     //controller.cargarDatos();
      
      //dar de alta un estudiante
 //     Estudiante e= new Estudiante();
@@ -52,17 +52,17 @@ public class Demo {
      //recuperar todos los estudiantes, en base a su género
 
      //recuperar las carreras con estudiantes inscriptos, y ordenar por cantidad de inscriptos
-     List<CarreraDTO> listCarrerasConInscriptos= controller.getReporteCarreras();
-     
-     for(int i=0; i< listCarrerasConInscriptos.size(); i++) {
-	     	System.out.println(listCarrerasConInscriptos.get(i));	
-	     }	     
+//     List<CarreraDTO> listCarrerasConInscriptos= controller.getReporteCarreras();
+//     for(int i=0; i< listCarrerasConInscriptos.size(); i++) {
+//	     	System.out.println(listCarrerasConInscriptos.get(i));	
+//	     }	     
      
      //recuperar los estudiantes de una determinada carrera, filtrado por ciudad de residencia
      
      
      
    List<CarreraDTO> reporteCarreras= controller.getReporteCarreras();
+   System.out.println("tamanio" + reporteCarreras.size());
    for(int i=0; i< reporteCarreras.size(); i++) {
 	     	System.out.println(reporteCarreras.get(i));	
 	     }

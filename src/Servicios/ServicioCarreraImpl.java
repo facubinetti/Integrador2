@@ -59,32 +59,53 @@ public class ServicioCarreraImpl implements ServicioCarrera{
 //		int idInscripto = 0;
 //		boolean anionoexiste;
 //		CarreraDTO dto;
-//
+//		int tmpnum=0;
 //		        for(int i=0; i< tmpInscriptos.size(); i++) { 
 //		            idInscripto=tmpInscriptos.get(i).getIdCarrera();
 //		            anionoexiste = false;
-//		                for(int j=0; j< tmpEgresados.size(); j++) { 
-//		                    idEgresado = tmpEgresados.get(j).getIdCarrera();
-//		                    if(tmpInscriptos.get(i).getAnio()== tmpEgresados.get(j).getAnio() && idInscripto == idEgresado) {
-//		                        dto = tmpEgresados.get(j);
-//		                        dto.setCantInscriptos(tmpInscriptos.get(i).getCantInscriptos());
-//		                        salida.add(dto);
-//		                        break;
-//		                    }else if(idInscripto != idEgresado){
-//		                        anionoexiste = true;
-//		                        break;
+//		            int tmpnum2=0;
+//		            if(tmpnum < tmpInscriptos.size()-1) {
+//                		tmpnum = i+1;
+//                	}
+//		                for(int j=0; j< tmpEgresados.size(); j++) {
+//		                	 idEgresado = tmpEgresados.get(j).getIdCarrera();  
+//		                    if(idInscripto == idEgresado) {
+//		                    	if(tmpnum2 < tmpEgresados.size()-1) {
+//		                    		tmpnum2 = j+1;
+//		                    	}
+//		                    	if(tmpInscriptos.get(i).getAnio()== tmpEgresados.get(j).getAnio()) {
+//		                    		//salida.get(salida.size()-1).setCantInscriptos(tmpInscriptos.get(i).getCantInscriptos());
+//			                        dto = tmpEgresados.get(j);
+//			                        dto.setCantInscriptos(tmpInscriptos.get(i).getCantInscriptos());
+//				                	salida.add(dto);
+//			                        tmpEgresados.remove(j);
+//			                        tmpInscriptos.remove(i);
+//			                        break;
+//		                    	}
+//		                    	else if(tmpInscriptos.get(i).getAnio()!= tmpEgresados.get(j).getAnio()) {
+//		                    		if( tmpInscriptos.get(tmpnum).getIdCarrera() != idEgresado ) {
+//			                    		dto = tmpEgresados.get(j);
+//			                    		tmpEgresados.remove(j);
+//			                    		j--;
+//			                    		salida.add(dto);
+//		                    		}
+//		                    		if( tmpEgresados.get(tmpnum2).getIdCarrera() != idInscripto ) {
+//			                    		dto = tmpInscriptos.get(i);
+//			                    		tmpInscriptos.remove(i);
+//			                    		i--;
+//			                    		salida.add(dto);
+//		                    		}
+//		                    		break;
+//		                    	}
 //		                    }
 //		                }
-//		            if(anionoexiste){
-//		                dto = tmpInscriptos.get(i);
-//		                salida.add(dto);
-//		            }
 //		        }
 //  
 //		        return salida;
 //	}
 	
-	//Tomi
+//	Tomi
+//	@Override
 //	public  List<CarreraDTO> getReporteCarreras() {
 //
 //		List<CarreraDTO> tmpInscriptos = cr.getReporteCarrerasInscriptos();
@@ -122,8 +143,9 @@ public class ServicioCarreraImpl implements ServicioCarrera{
 //
 //	        return salida;
 //		}
+
 	
-	// prueba  ------------------------------------------------------------------
+//	// prueba  ------------------------------------------------------------------
 	@Override
 	public  List<CarreraDTO> getReporteCarrerasInscriptos() {
 		List<CarreraDTO> tmpInscriptos = cr.getReporteCarrerasInscriptos();
@@ -164,14 +186,14 @@ public class ServicioCarreraImpl implements ServicioCarrera{
 				}
 				if(sumoInscripto==false) {
 					if(m.getAnioGraduado()!=0 && sumoEgresado==false) {
-						CarreraDTO nuevo = new CarreraDTO(c.getNombre(),c.getId_carrera(),0,1,m.getAnioGraduado());
-						CarreraDTO nuevo2 = new CarreraDTO(c.getNombre(),c.getId_carrera(),1,0,m.getInscripcion());
+						CarreraDTO nuevo = new CarreraDTO(c.getNombre(),c.getId_carrera(),m.getAnioGraduado(),0,1);
+						CarreraDTO nuevo2 = new CarreraDTO(c.getNombre(),c.getId_carrera(),m.getInscripcion(),1,0);
 						cantTotal++;
 						cantTotal++;
 						temporal.add(nuevo);
 						temporal.add(nuevo2);
 					} else {
-						CarreraDTO nuevo = new CarreraDTO(c.getNombre(),c.getId_carrera(),1,0,m.getInscripcion());
+						CarreraDTO nuevo = new CarreraDTO(c.getNombre(),c.getId_carrera(),m.getInscripcion(),1,0);
 						cantTotal++;
 						temporal.add(nuevo);
 					}
