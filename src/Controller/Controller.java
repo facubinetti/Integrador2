@@ -158,7 +158,7 @@ public class Controller {
 			CSVParser parser = CSVFormat.DEFAULT.withHeader().parse(new FileReader("./src/assets/estudiantes100.csv"));
 			System.out.println("Estoy cargando los estudiantes...");
 			for(CSVRecord row: parser) {
-				Estudiante tmp = new Estudiante(parseInt(row.get("dni")),parseInt(row.get("nrolibreta")),row.get("nombre"),row.get("apellido"),parseInt(row.get("edad")),row.get("genero").charAt(0),row.get("ciudad"));
+				Estudiante tmp = new Estudiante(parseInt(row.get("dni")),parseInt(row.get("nrolibreta")),row.get("nombre"),row.get("apellido"),parseInt(row.get("edad")),generarGenero(),row.get("ciudad"));
 				altaEstudiante(tmp, carreras.get((int) (Math.random()*19+1)));
 			}
 			System.out.println("No se me da nada mal");
@@ -193,6 +193,16 @@ public class Controller {
 			e.printStackTrace();
 		}
 		return car;
+	}
+	
+	public char generarGenero() {
+		Random random = new Random();
+		//50% chance of true
+		boolean chances50true = (random.nextInt(4) < 2) ? true : false;
+		if(chances50true) {
+			return 'f';
+		}
+		return 'm';
 	}
 
 }

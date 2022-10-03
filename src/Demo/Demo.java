@@ -60,12 +60,12 @@ public class Demo {
 		/**
 		 * recuperar un estudiante, en base a su número de libreta universitaria
 		 */
-		//System.out.println(controller.getEstudianteLibreta(222333));
+//		System.out.println(controller.getEstudianteLibreta(222333));
      
 		/**
-		 * recuperar todos los estudiantes, en base a su género
+		 * recuperar todos los estudiantes, en base a su género (f = femenino, m = masculino)
 		 */
-//		List<Estudiante> estudiantesPorGenero = controller.getEstudiantesPorGenero('F');
+//		List<Estudiante> estudiantesPorGenero = controller.getEstudiantesPorGenero('m');
 //		for(int i=0; i<estudiantesPorGenero.size(); i++) {
 //			System.out.println(estudiantesPorGenero.get(i));
 //		}
