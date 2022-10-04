@@ -95,8 +95,7 @@ public class Controller {
 			boolean chances40true = (random.nextInt(5) < 2) ? true : false;
 			int anioRandomIngreso=0;//null
 			int anioRandomEgreso = 0; 	
-			int duracionTemp= c.getDuracion();
-			
+			int duracionTemp= c.getDuracion();		
 
 			if(chances40true) {
 				anioRandomIngreso= generateRandomInt(2010, 2022-duracionTemp);
@@ -140,16 +139,15 @@ public class Controller {
 		return this.sc.getReporteCarreras();
 	}
 	
-	/////////// prueba ---------------------------------
-	public List<CarreraDTO> getReporteCarrerasInscriptos(){
-		return this.sc.getReporteCarrerasInscriptos();
+	public char generarGenero() {
+		Random random = new Random();
+		//50% chance of true
+		boolean chances50true = (random.nextInt(4) < 2) ? true : false;
+		if(chances50true) {
+			return 'f';
+		}
+		return 'm';
 	}
-	
-	public List<CarreraDTO> getReporteCarrerasEgresados(){
-		return this.sc.getReporteCarrerasEgresados();
-	}
-	//----------------------------------------------------------------------------------------------
-	
 	
 	public void cargarDatos() {
 		List<Carrera> carreras = leerCarreras();
@@ -195,14 +193,5 @@ public class Controller {
 		return car;
 	}
 	
-	public char generarGenero() {
-		Random random = new Random();
-		//50% chance of true
-		boolean chances50true = (random.nextInt(4) < 2) ? true : false;
-		if(chances50true) {
-			return 'f';
-		}
-		return 'm';
-	}
 
 }

@@ -38,7 +38,7 @@ public class Demo {
 		Controller controller = new Controller();
 		
 		/**
-		 * Crear la base de datos Derby y cargarla con datos
+		 * Crear la base de datos y cargarla con datos
 		 */
 //		controller.cargarDatos();
      
@@ -90,6 +90,7 @@ public class Demo {
 	    * Generar un reporte de las carreras, que para cada carrera incluya información de los
 		inscriptos y egresados por año. Se deben ordenar las carreras alfabéticamente, y presentar
 		los años de manera cronológica. 
+		Enfoque elegido: Contar cantidad de inscriptos y cantidad de egresados de la carrera por año
 	    */
 //	 	List<CarreraDTO> reporteCarreras= controller.getReporteCarreras();
 //	 	System.out.println("tamanio" + reporteCarreras.size());
